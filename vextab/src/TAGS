@@ -1,0 +1,253 @@
+!_TAG_FILE_FORMAT	2	/extended format/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Łukasz Korecki	/lukasz@korecki.me/
+!_TAG_PROGRAM_NAME	CoffeeTags	//
+!_TAG_PROGRAM_URL	https://github.com/lukaszkorecki/CoffeeTags	/GitHub repository/
+!_TAG_PROGRAM_VERSION	0.6.0	//
+@DEBUG	./artist.coffee	/^  @DEBUG = false$/;"	p	line:13	language:coffee	object:Artist
+@DEBUG	./conductor.coffee	/^  @DEBUG = true$/;"	p	line:14	language:coffee	object:Vex.Flow.Conductor
+@DEBUG	./player.coffee	/^  @DEBUG = true$/;"	p	line:13	language:coffee	object:Vex.Flow.Player
+@DEBUG	./vextab.coffee	/^  @DEBUG = false$/;"	p	line:14	language:coffee	object:VexTab
+@INSTRUMENTS_LOADED	./conductor.coffee	/^  @INSTRUMENTS_LOADED = {}$/;"	p	line:15	language:coffee	object:Vex.Flow.Conductor
+@NOLOGO	./artist.coffee	/^  @NOLOGO = false$/;"	p	line:16	language:coffee	object:Artist
+Artist	./artist.coffee	/^class Artist$/;"	c	line:12	language:coffee
+Fraction	./conductor.coffee	/^  Fraction = Vex.Flow.Fraction$/;"	p	line:18	language:coffee	object:Vex.Flow.Conductor
+Fraction	./player.coffee	/^  Fraction = Vex.Flow.Fraction$/;"	p	line:16	language:coffee	object:Vex.Flow.Player
+INSTRUMENTS	./conductor.coffee	/^  INSTRUMENTS = {$/;"	p	line:23	language:coffee	object:Vex.Flow.Conductor
+INSTRUMENTS	./player.coffee	/^  INSTRUMENTS = {$/;"	p	line:21	language:coffee	object:Vex.Flow.Player
+L	./artist.coffee	/^  L = (args...) -> console?.log("(Vex.Flow.Artist)", args...) if Artist.DEBUG$/;"	p	line:14	language:coffee	object:Artist
+L	./conductor.coffee	/^  L = (args...) -> console?.log("(Vex.Flow.Conductor)", args...) if Vex.Flow.Conductor.DEBUG$/;"	p	line:16	language:coffee	object:Vex.Flow.Conductor
+L	./player.coffee	/^  L = (args...) -> console?.log("(Vex.Flow.Player)", args...) if Vex.Flow.Player.DEBUG$/;"	p	line:14	language:coffee	object:Vex.Flow.Player
+L	./vextab.coffee	/^  L = (args...) -> console?.log("(Vex.Flow.VexTab)", args...) if VexTab.DEBUG$/;"	p	line:15	language:coffee	object:VexTab
+RESOLUTION	./conductor.coffee	/^  RESOLUTION = Vex.Flow.RESOLUTION$/;"	p	line:19	language:coffee	object:Vex.Flow.Conductor
+RESOLUTION	./player.coffee	/^  RESOLUTION = Vex.Flow.RESOLUTION$/;"	p	line:17	language:coffee	object:Vex.Flow.Player
+Vex.Flow.Conductor	./conductor.coffee	/^class Vex.Flow.Conductor$/;"	c	line:13	language:coffee
+Vex.Flow.Player	./player.coffee	/^class Vex.Flow.Player$/;"	c	line:12	language:coffee
+VexTab	./vextab.coffee	/^class VexTab$/;"	c	line:13	language:coffee
+addAnnotations	./artist.coffee	/^  addAnnotations: (annotations) ->$/;"	p	line:623	language:coffee	object:Artist
+addNote	./artist.coffee	/^  addNote: (note) ->$/;"	p	line:915	language:coffee	object:Artist
+addPlayer	./conductor.coffee	/^  addPlayer: (player) ->$/;"	p	line:62	language:coffee	object:Vex.Flow.Conductor
+addStaveArticulation	./artist.coffee	/^  addStaveArticulation: (type, first_note, last_note, first_indices, last_indices) ->$/;"	p	line:706	language:coffee	object:Artist
+addStaveGroup	./artist.coffee	/^  addStaveGroup: () ->$/;"	p	line:980	language:coffee	object:Artist
+addStaveNote	./artist.coffee	/^  addStaveNote: (note_params) ->$/;"	p	line:349	language:coffee	object:Artist
+addTabArticulation	./artist.coffee	/^  addTabArticulation: (type, first_note, last_note, first_indices, last_indices) ->$/;"	p	line:665	language:coffee	object:Artist
+addTabNote	./artist.coffee	/^  addTabNote: (spec, play_note=null) ->$/;"	p	line:378	language:coffee	object:Artist
+addTextNote	./artist.coffee	/^  addTextNote: (text, position=0, justification="center", smooth=true, ignore_ticks=false) ->$/;"	p	line:929	language:coffee	object:Artist
+addTextVoice	./artist.coffee	/^  addTextVoice: ->$/;"	p	line:918	language:coffee	object:Artist
+addVoice	./artist.coffee	/^  addVoice: (options) ->$/;"	p	line:967	language:coffee	object:Artist
+attachConductor	./artist.coffee	/^  attachConductor: (conductor) ->$/;"	p	line:79	language:coffee	object:Artist
+badFingering	./artist.coffee	/^    badFingering = -> new Vex.RERR("ArtistError", "Bad fingering: #{parts[1]}")$/;"	f	line:510	language:coffee	object:Artist.makeFingering
+bartext	./vextab.coffee	/^    bartext = => @artist.addTextNote("", 0, justification, false, true)$/;"	f	line:133	language:coffee	object:VexTab.parseStaveText
+callback	./conductor.coffee	/^        callback: () =>$/;"	f	line:175	language:coffee	object:Vex.Flow.Conductor.play.loading
+closeBends	./artist.coffee	/^  closeBends: (offset=1) ->$/;"	p	line:462	language:coffee	object:Artist
+constructor	./artist.coffee	/^  constructor: (@x, @y, @width, options) ->$/;"	p	line:18	language:coffee	object:Artist
+constructor	./conductor.coffee	/^  constructor: (@artist, options) ->$/;"	p	line:41	language:coffee	object:Vex.Flow.Conductor
+constructor	./player.coffee	/^  constructor: (@staves, options) ->$/;"	p	line:39	language:coffee	object:Vex.Flow.Player
+constructor	./vextab.coffee	/^  constructor: (@artist) ->$/;"	p	line:23	language:coffee	object:VexTab
+createNote	./vextab.coffee	/^    createNote = (text) =>$/;"	f	line:134	language:coffee	object:VexTab.parseStaveText
+draw	./artist.coffee	/^  draw: (renderer) -> @render renderer$/;"	p	line:300	language:coffee	object:Artist
+drawDot	./conductor.coffee	/^  drawDot = Vex.drawDot$/;"	p	line:21	language:coffee	object:Vex.Flow.Conductor
+drawDot	./player.coffee	/^  drawDot = Vex.drawDot$/;"	p	line:19	language:coffee	object:Vex.Flow.Player
+for 	./artist.coffee	/^      for bend in v$/;"	b	line:468	language:coffee
+for 	./artist.coffee	/^      for note, i in stave_notes[stave_notes.length - annotations.length..]$/;"	b	line:644	language:coffee
+for 	./artist.coffee	/^      for note, i in stave_notes[stave_notes.length - annotations.length..]$/;"	b	line:651	language:coffee
+for 	./artist.coffee	/^      for notes, i in score.voices$/;"	b	line:155	language:coffee
+for 	./artist.coffee	/^      for notes, i in tab.voices$/;"	b	line:131	language:coffee
+for 	./artist.coffee	/^      for stave, i in stavegroup.staves$/;"	b	line:235	language:coffee
+for 	./artist.coffee	/^      for tab_note, i in tab_notes[tab_notes.length - annotations.length..]$/;"	b	line:633	language:coffee
+for 	./artist.coffee	/^    for acc, index in params.accidentals$/;"	b	line:362	language:coffee
+for 	./artist.coffee	/^    for articulation in @stave_articulations$/;"	b	line:270	language:coffee
+for 	./artist.coffee	/^    for articulation in @tab_articulations$/;"	b	line:266	language:coffee
+for 	./artist.coffee	/^    for finger in fingers$/;"	b	line:512	language:coffee
+for 	./artist.coffee	/^    for index, i in start_indices$/;"	b	line:454	language:coffee
+for 	./artist.coffee	/^    for k, v of @current_bends$/;"	b	line:466	language:coffee
+for 	./artist.coffee	/^    for k, v of options$/;"	b	line:88	language:coffee
+for 	./artist.coffee	/^    for note in chord$/;"	b	line:852	language:coffee
+for 	./artist.coffee	/^    for notes in text_notes$/;"	b	line:174	language:coffee
+for 	./artist.coffee	/^    for spec, i in specs$/;"	b	line:900	language:coffee
+for 	./artist.coffee	/^    for stavegroup in @stavegroups$/;"	b	line:230	language:coffee
+for 	./artist.coffee	/^    for tab_note in tab_notes[@bend_start_index+1..((tab_notes.length - 2) + offset)]$/;"	b	line:474	language:coffee
+for 	./artist.coffee	/^    for valid_articulation in ["b", "s", "h", "p", "t", "T", "v", "V"]$/;"	b	line:767	language:coffee
+for 	./player.coffee	/^        for note in voice.getTickables()$/;"	b	line:126	language:coffee
+for 	./player.coffee	/^      for key in keys$/;"	b	line:168	language:coffee
+for 	./player.coffee	/^      for voice in stave$/;"	b	line:124	language:coffee
+for 	./player.coffee	/^    for note in notes$/;"	b	line:160	language:coffee
+for 	./player.coffee	/^    for stave in staves$/;"	b	line:121	language:coffee
+for 	./vextab.coffee	/^          for option in stave.params$/;"	b	line:196	language:coffee
+for 	./vextab.coffee	/^          for s in stave.stavelist$/;"	b	line:179	language:coffee
+for 	./vextab.coffee	/^    for element in notes$/;"	b	line:110	language:coffee
+for 	./vextab.coffee	/^    for option in options$/;"	b	line:39	language:coffee
+for 	./vextab.coffee	/^    for stave in @elements$/;"	b	line:173	language:coffee
+for 	./vextab.coffee	/^    for str in text_line$/;"	b	line:145	language:coffee
+formatAndRender	./artist.coffee	/^  formatAndRender = (ctx, tab, score, text_notes, customizations, options) ->$/;"	p	line:112	language:coffee	object:Artist
+getArtist	./vextab.coffee	/^  getArtist: -> return @artist$/;"	p	line:32	language:coffee	object:VexTab
+getConductorData	./artist.coffee	/^  getConductorData: ->$/;"	p	line:100	language:coffee	object:Artist
+getFingering	./artist.coffee	/^  getFingering = (text) -> text.match(/\^\\.fingering\\/([\^.]+)\\./)$/;"	p	line:498	language:coffee	object:Artist
+getNoteForABC	./artist.coffee	/^  getNoteForABC: (abc, string) ->$/;"	p	line:342	language:coffee	object:Artist
+getNoteForFret	./artist.coffee	/^  getNoteForFret: (fret, string) ->$/;"	p	line:306	language:coffee	object:Artist
+getOverlay	./conductor.coffee	/^  getOverlay = (context, scale, overlay_class) ->$/;"	p	line:78	language:coffee	object:Vex.Flow.Conductor
+getOverlay	./player.coffee	/^  getOverlay = (context, scale, overlay_class) ->$/;"	p	line:92	language:coffee	object:Vex.Flow.Player
+getPlayer	./conductor.coffee	/^  getPlayer: (i) ->$/;"	p	line:59	language:coffee	object:Vex.Flow.Conductor
+getPlayersLength	./conductor.coffee	/^  getPlayersLength: ->$/;"	p	line:146	language:coffee	object:Vex.Flow.Conductor
+getPreviousNoteIndex	./artist.coffee	/^  getPreviousNoteIndex: ->$/;"	p	line:720	language:coffee	object:Artist
+getScoreArticulationParts	./artist.coffee	/^  getScoreArticulationParts = (text) -> text.match(/\^\\.(a[\^\\/]*)\\/(t|b)[\^.]*\\./)$/;"	p	line:566	language:coffee	object:Artist
+getStaveGroup	./artist.coffee	/^  getStaveGroup: (i) ->$/;"	p	line:988	language:coffee	object:Artist
+getStrokeParts	./artist.coffee	/^  getStrokeParts = (text) -> text.match(/\^\\.stroke\\/([\^.]+)\\./)$/;"	p	line:540	language:coffee	object:Artist
+if 	./artist.coffee	/^                        if stave.note? then {stave: stave.note, voices: stave.note_voices} else null,$/;"	b	line:249	language:coffee
+if 	./artist.coffee	/^                        if stave.tab? then {stave: stave.tab, voices: stave.tab_voices} else null,$/;"	b	line:248	language:coffee
+if 	./artist.coffee	/^          if multi_voice$/;"	b	line:140	language:coffee
+if 	./artist.coffee	/^        if @conductor?.getPlayer(i)$/;"	b	line:254	language:coffee
+if 	./artist.coffee	/^        if accidental?$/;"	b	line:875	language:coffee
+if 	./artist.coffee	/^        if customizations["tab-stems"] == "true"$/;"	b	line:139	language:coffee
+if 	./artist.coffee	/^        if fingerings?$/;"	b	line:659	language:coffee
+if 	./artist.coffee	/^        if getScoreArticulationParts(annotations[i])$/;"	b	line:634	language:coffee
+if 	./artist.coffee	/^        if multi_voice$/;"	b	line:164	language:coffee
+if 	./artist.coffee	/^        if parts.length > 1 and parts[1] == "c"$/;"	b	line:367	language:coffee
+if 	./artist.coffee	/^        if selected_note.change$/;"	b	line:316	language:coffee
+if 	./artist.coffee	/^        if selected_note.change$/;"	b	line:319	language:coffee
+if 	./artist.coffee	/^      if @current_duration[@current_duration.length - 1] == "d"$/;"	b	line:825	language:coffee
+if 	./artist.coffee	/^      if @customizations.player is "true"$/;"	b	line:283	language:coffee
+if 	./artist.coffee	/^      if _.isEmpty(indices) then continue$/;"	b	line:769	language:coffee
+if 	./artist.coffee	/^      if acc?$/;"	b	line:363	language:coffee
+if 	./artist.coffee	/^      if k in valid_options$/;"	b	line:89	language:coffee
+if 	./artist.coffee	/^      if last_note instanceof Vex.Flow.BarNote$/;"	b	line:226	language:coffee
+if 	./artist.coffee	/^      if not _.isEmpty(text_notes) and not _.isEmpty(text_voices)$/;"	b	line:196	language:coffee
+if 	./artist.coffee	/^      if note.abc? or note.string != current_string$/;"	b	line:854	language:coffee
+if 	./artist.coffee	/^      if note.abc?$/;"	b	line:872	language:coffee
+if 	./artist.coffee	/^      if parts?$/;"	b	line:924	language:coffee
+if 	./artist.coffee	/^      if prev_index is -1$/;"	b	line:773	language:coffee
+if 	./artist.coffee	/^      if score? then score_voices else tab_voices$/;"	b	line:210	language:coffee
+if 	./artist.coffee	/^      if score?$/;"	b	line:191	language:coffee
+if 	./artist.coffee	/^      if stave.note?$/;"	b	line:794	language:coffee
+if 	./artist.coffee	/^      if stave.tab?$/;"	b	line:790	language:coffee
+if 	./artist.coffee	/^      if tab? and score?$/;"	b	line:207	language:coffee
+if 	./artist.coffee	/^      if tab?$/;"	b	line:187	language:coffee
+if 	./artist.coffee	/^      if valid_articulation is "b" then has_bends = true$/;"	b	line:771	language:coffee
+if 	./artist.coffee	/^    if !@conductor$/;"	b	line:81	language:coffee
+if 	./artist.coffee	/^    if @conductor?$/;"	b	line:282	language:coffee
+if 	./artist.coffee	/^    if @current_duration[@current_duration.length - 1] == "d"$/;"	b	line:372	language:coffee
+if 	./artist.coffee	/^    if @current_duration[@current_duration.length - 1] == "d"$/;"	b	line:388	language:coffee
+if 	./artist.coffee	/^    if @customizations.player is "true"$/;"	b	line:95	language:coffee
+if 	./artist.coffee	/^    if @customizations["tab-stems"] == "true"$/;"	b	line:495	language:coffee
+if 	./artist.coffee	/^    if @customizations["tab-stems"] == "true"$/;"	b	line:818	language:coffee
+if 	./artist.coffee	/^    if _.isEmpty(@current_bends)$/;"	b	line:445	language:coffee
+if 	./artist.coffee	/^    if _.isEmpty(first_indices) and _.isEmpty(last_indices) then return$/;"	b	line:673	language:coffee
+if 	./artist.coffee	/^    if _.isEmpty(tab_notes) or _.isEmpty(articulations)$/;"	b	line:760	language:coffee
+if 	./artist.coffee	/^    if annotations.length > tab_notes.length$/;"	b	line:628	language:coffee
+if 	./artist.coffee	/^    if chord_articulation?$/;"	b	line:908	language:coffee
+if 	./artist.coffee	/^    if decorator == "V"$/;"	b	line:742	language:coffee
+if 	./artist.coffee	/^    if decorator == "d"$/;"	b	line:747	language:coffee
+if 	./artist.coffee	/^    if decorator == "u"$/;"	b	line:744	language:coffee
+if 	./artist.coffee	/^    if decorator == "v"$/;"	b	line:740	language:coffee
+if 	./artist.coffee	/^    if font?$/;"	b	line:922	language:coffee
+if 	./artist.coffee	/^    if format_stave?$/;"	b	line:182	language:coffee
+if 	./artist.coffee	/^    if new_root == "b" and old_root == "c"$/;"	b	line:335	language:coffee
+if 	./artist.coffee	/^    if opts.notation is "true"$/;"	b	line:1010	language:coffee
+if 	./artist.coffee	/^    if opts.tablature is "true"$/;"	b	line:1022	language:coffee
+if 	./artist.coffee	/^    if params["position"] == 0$/;"	b	line:805	language:coffee
+if 	./artist.coffee	/^    if parseInt(from_fret, 10) > parseInt(to_fret, 10)$/;"	b	line:428	language:coffee
+if 	./artist.coffee	/^    if parts?$/;"	b	line:505	language:coffee
+if 	./artist.coffee	/^    if parts?$/;"	b	line:546	language:coffee
+if 	./artist.coffee	/^    if parts?$/;"	b	line:569	language:coffee
+if 	./artist.coffee	/^    if parts?$/;"	b	line:593	language:coffee
+if 	./artist.coffee	/^    if parts?$/;"	b	line:601	language:coffee
+if 	./artist.coffee	/^    if score?$/;"	b	line:153	language:coffee
+if 	./artist.coffee	/^    if stave.note$/;"	b	line:650	language:coffee
+if 	./artist.coffee	/^    if stave.tab$/;"	b	line:632	language:coffee
+if 	./artist.coffee	/^    if tab?$/;"	b	line:129	language:coffee
+if 	./artist.coffee	/^    if text[0] == "#"$/;"	b	line:959	language:coffee
+if 	./artist.coffee	/^    if type == "b"$/;"	b	line:701	language:coffee
+if 	./artist.coffee	/^    if type == "s"$/;"	b	line:677	language:coffee
+if 	./artist.coffee	/^    if type == "t"$/;"	b	line:668	language:coffee
+if 	./artist.coffee	/^    if type in ["T", "t"]$/;"	b	line:693	language:coffee
+if 	./artist.coffee	/^    if type in ["b", "s", "h", "p", "t", "T"]$/;"	b	line:709	language:coffee
+if 	./artist.coffee	/^    if type in ["h", "p"]$/;"	b	line:685	language:coffee
+if 	./conductor.coffee	/^    if @marker?$/;"	b	line:73	language:coffee
+if 	./conductor.coffee	/^    if @options.show_controls$/;"	b	line:118	language:coffee
+if 	./conductor.coffee	/^    if flag$/;"	b	line:163	language:coffee
+if 	./conductor.coffee	/^    if not @paper$/;"	b	line:111	language:coffee
+if 	./player.coffee	/^            if _.has(@tick_notes, key)$/;"	b	line:133	language:coffee
+if 	./player.coffee	/^        if total_voice_ticks.value() > max_voice_tick.value()$/;"	b	line:143	language:coffee
+if 	./player.coffee	/^      if @next_index >= @all_ticks.length$/;"	b	line:189	language:coffee
+if 	./player.coffee	/^    if @current_ticks >= @next_event_tick and @all_ticks.length > 0$/;"	b	line:186	language:coffee
+if 	./player.coffee	/^    if @done$/;"	b	line:180	language:coffee
+if 	./player.coffee	/^    if @marker?$/;"	b	line:87	language:coffee
+if 	./player.coffee	/^    if instrument not in _.keys(INSTRUMENTS)$/;"	b	line:75	language:coffee
+if 	./vextab.coffee	/^      if element.abc$/;"	b	line:120	language:coffee
+if 	./vextab.coffee	/^      if element.chord$/;"	b	line:117	language:coffee
+if 	./vextab.coffee	/^      if element.command$/;"	b	line:114	language:coffee
+if 	./vextab.coffee	/^      if element.time$/;"	b	line:111	language:coffee
+if 	./vextab.coffee	/^      if text.match(/\\.font=.*/)$/;"	b	line:147	language:coffee
+if 	./vextab.coffee	/^      if text[0] == "|"$/;"	b	line:136	language:coffee
+if 	./vextab.coffee	/^    if @elements$/;"	b	line:218	language:coffee
+if 	./vextab.coffee	/^    if element.command is "annotations"$/;"	b	line:84	language:coffee
+if 	./vextab.coffee	/^    if element.command is "bar"$/;"	b	line:78	language:coffee
+if 	./vextab.coffee	/^    if element.command is "command"$/;"	b	line:90	language:coffee
+if 	./vextab.coffee	/^    if element.command is "rest"$/;"	b	line:87	language:coffee
+if 	./vextab.coffee	/^    if element.command is "tuplet"$/;"	b	line:81	language:coffee
+if 	./vextab.coffee	/^    if params.notation == "false" and params.tablature == "false"$/;"	b	line:72	language:coffee
+if  	./conductor.coffee	/^      if  not Vex.Flow.Conductor.INSTRUMENTS_LOADED[instrument] or @loading$/;"	b	line:160	language:coffee
+isRendered	./artist.coffee	/^  isRendered: -> @rendered$/;"	p	line:298	language:coffee	object:Artist
+isValid	./vextab.coffee	/^  isValid: -> @valid$/;"	p	line:30	language:coffee	object:VexTab
+makeAnnotation	./artist.coffee	/^  makeAnnotation: (text) ->$/;"	p	line:578	language:coffee	object:Artist
+makeBend	./artist.coffee	/^  makeBend = (from_fret, to_fret) ->$/;"	p	line:424	language:coffee	object:Artist
+makeDuration	./artist.coffee	/^  makeDuration = (time, dot) -> time + (if dot then "d" else "")$/;"	p	line:391	language:coffee	object:Artist
+makeFingering	./artist.coffee	/^  makeFingering: (text) ->$/;"	p	line:499	language:coffee	object:Artist
+makeIt	./artist.coffee	/^    makeIt = (text, just=default_vjust) ->$/;"	f	line:587	language:coffee	object:Artist.makeAnnotation
+makeScoreArticulation	./artist.coffee	/^  makeScoreArticulation: (text) ->$/;"	p	line:567	language:coffee	object:Artist
+makeStroke	./artist.coffee	/^  makeStroke: (text) ->$/;"	p	line:541	language:coffee	object:Artist
+makeTuplets	./artist.coffee	/^  makeTuplets: (tuplets, notes) ->$/;"	p	line:480	language:coffee	object:Artist
+newError	./vextab.coffee	/^  newError = (object, msg) ->$/;"	p	line:18	language:coffee	object:VexTab
+noteValues	./conductor.coffee	/^  noteValues = Vex.Flow.Music.noteValues$/;"	p	line:20	language:coffee	object:Vex.Flow.Conductor
+noteValues	./player.coffee	/^  noteValues = Vex.Flow.Music.noteValues$/;"	p	line:18	language:coffee	object:Vex.Flow.Player
+onMouseUp	./conductor.coffee	/^      @play_button.onMouseUp = (event) =>$/;"	f	line:123	language:coffee	object:Vex.Flow.Conductor.render
+openBends	./artist.coffee	/^  openBends: (first_note, last_note, first_indices, last_indices) ->$/;"	p	line:439	language:coffee	object:Artist
+parse	./vextab.coffee	/^  parse: (code) ->$/;"	p	line:205	language:coffee	object:VexTab
+parseABC	./vextab.coffee	/^  parseABC: (note) ->$/;"	p	line:104	language:coffee	object:VexTab
+parseBool	./artist.coffee	/^  parseBool = (str) ->$/;"	p	line:109	language:coffee	object:Artist
+parseCommand	./vextab.coffee	/^  parseCommand: (element) ->$/;"	p	line:77	language:coffee	object:VexTab
+parseError	./vextab.coffee	/^    parser.parseError = (message, hash) ->$/;"	f	line:206	language:coffee	object:VexTab.parse
+parseFret	./vextab.coffee	/^  parseFret: (note) ->$/;"	p	line:100	language:coffee	object:VexTab
+parseStaveOptions	./vextab.coffee	/^  parseStaveOptions: (options) ->$/;"	p	line:34	language:coffee	object:VexTab
+parseStaveText	./vextab.coffee	/^  parseStaveText: (text_line) ->$/;"	p	line:125	language:coffee	object:VexTab
+play	./conductor.coffee	/^  play: ->$/;"	p	line:154	language:coffee	object:Vex.Flow.Conductor
+pushToStaves	./player.coffee	/^  pushToStaves: (voice) ->$/;"	p	line:55	language:coffee	object:Vex.Flow.Player
+refresh	./player.coffee	/^  refresh: ->$/;"	p	line:179	language:coffee	object:Vex.Flow.Player
+removeControls	./conductor.coffee	/^  removeControls: ->$/;"	p	line:101	language:coffee	object:Vex.Flow.Conductor
+render	./artist.coffee	/^  render: (renderer) ->$/;"	p	line:212	language:coffee	object:Artist
+render	./conductor.coffee	/^  render: ->$/;"	p	line:106	language:coffee	object:Vex.Flow.Conductor
+render	./player.coffee	/^  render: ->$/;"	p	line:116	language:coffee	object:Vex.Flow.Player
+reset	./artist.coffee	/^  reset: ->$/;"	p	line:30	language:coffee	object:Artist
+reset	./conductor.coffee	/^  reset: ->$/;"	p	line:71	language:coffee	object:Vex.Flow.Conductor
+reset	./player.coffee	/^  reset: ->$/;"	p	line:80	language:coffee	object:Vex.Flow.Player
+reset	./vextab.coffee	/^  reset: ->$/;"	p	line:26	language:coffee	object:VexTab
+setArtist	./conductor.coffee	/^  setArtist: (artist) ->$/;"	p	line:55	language:coffee	object:Vex.Flow.Conductor
+setBar	./artist.coffee	/^    setBar = (stave, notes) ->$/;"	f	line:224	language:coffee	object:Artist.render
+setChannelNumber	./player.coffee	/^  setChannelNumber: (i) ->$/;"	p	line:61	language:coffee	object:Vex.Flow.Player
+setConductor	./player.coffee	/^  setConductor: (conductor) ->$/;"	p	line:58	language:coffee	object:Vex.Flow.Player
+setInstrument	./player.coffee	/^  setInstrument: (instrument) ->$/;"	p	line:73	language:coffee	object:Vex.Flow.Player
+setStaves	./player.coffee	/^  setStaves: (staves) ->$/;"	p	line:64	language:coffee	object:Vex.Flow.Player
+setTempo	./conductor.coffee	/^  setTempo: (tempo) ->$/;"	p	line:66	language:coffee	object:Vex.Flow.Conductor
+setTempo	./player.coffee	/^  setTempo: (tempo) ->$/;"	p	line:68	language:coffee	object:Vex.Flow.Player
+setTextFont	./artist.coffee	/^  setTextFont: (font) ->$/;"	p	line:921	language:coffee	object:Artist
+start	./player.coffee	/^  start: ->$/;"	p	line:204	language:coffee	object:Vex.Flow.Player
+startPlayers	./conductor.coffee	/^  startPlayers: ->$/;"	p	line:149	language:coffee	object:Vex.Flow.Conductor
+staveGroupsLength	./artist.coffee	/^  staveGroupsLength: () ->$/;"	p	line:985	language:coffee	object:Artist
+stop	./player.coffee	/^  stop: ->$/;"	p	line:194	language:coffee	object:Vex.Flow.Player
+stopPlayers	./conductor.coffee	/^  stopPlayers: ->$/;"	p	line:140	language:coffee	object:Vex.Flow.Conductor
+switch 	./artist.coffee	/^      switch parts[1]$/;"	b	line:547	language:coffee
+switch 	./artist.coffee	/^      switch parts[1]$/;"	b	line:604	language:coffee
+switch 	./artist.coffee	/^      switch pieces[2]$/;"	b	line:518	language:coffee
+switch 	./artist.coffee	/^      switch pieces[3]$/;"	b	line:530	language:coffee
+switch 	./artist.coffee	/^    switch @customizations.accidentals$/;"	b	line:314	language:coffee
+switch 	./artist.coffee	/^    switch words[0]$/;"	b	line:1055	language:coffee
+switch 	./vextab.coffee	/^        switch command$/;"	b	line:154	language:coffee
+switch 	./vextab.coffee	/^      switch option.key$/;"	b	line:42	language:coffee
+switch 	./vextab.coffee	/^      switch stave.element$/;"	b	line:174	language:coffee
+unless 	./artist.coffee	/^        unless getScoreArticulationParts(annotations[i])$/;"	b	line:645	language:coffee
+unless 	./artist.coffee	/^      unless specs[current_position]?$/;"	b	line:858	language:coffee
+unless 	./artist.coffee	/^    unless Artist.NOLOGO$/;"	b	line:290	language:coffee
+unless 	./artist.coffee	/^    unless _.isEmpty(stave.note_notes)$/;"	b	line:976	language:coffee
+unless 	./artist.coffee	/^    unless _.isEmpty(stave.tab_notes)$/;"	b	line:972	language:coffee
+unless 	./player.coffee	/^          unless note.shouldIgnoreTicks()$/;"	b	line:127	language:coffee
+updateMarker	./conductor.coffee	/^  updateMarker: (x, y) ->$/;"	p	line:134	language:coffee	object:Vex.Flow.Conductor
