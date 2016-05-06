@@ -76,7 +76,7 @@ module.exports = function(grunt) {
           }
         },
         files: [
-          { src: "tests/playground.js", dest: "build/playground.js" }
+          { src: "tests/playground.js", dest: "../build/playground.js" }
         ]
       },
     },
