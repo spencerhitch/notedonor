@@ -51,6 +51,7 @@
   },
   "scripts": {
     "start": "grunt stage",
+    "notedonor": "grunt stage; grunt notedonor",
     "test": "grunt test"
   },
   "homepage": "http://www.vexflow.com/vextab/",

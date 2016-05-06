@@ -67,6 +67,18 @@ module.exports = function(grunt) {
           { src: TABDIV_SRC, dest: TABDIV_OUT }
         ]
       },
+      notedonor: {
+        options: {
+          // No need for this because of package.json "browserify" rule.
+          // transform: ['coffeeify'],
+          browserifyOptions: {
+            debug: true
+          }
+        },
+        files: [
+          { src: "../notedonor.js", dest: "../build/notedonor.js" }
+        ]
+      },
       playground: {
         options: {
           // No need for this because of package.json "browserify" rule.
@@ -76,7 +88,7 @@ module.exports = function(grunt) {
           }
         },
         files: [
-          { src: "tests/playground.js", dest: "../build/playground.js" }
+          { src: "tests/playground.js", dest: "build/playground.js" }
         ]
       },
     },
