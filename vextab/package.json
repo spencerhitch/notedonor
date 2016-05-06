@@ -50,8 +50,7 @@
     "url": "https://github.com/0xfe/vexflow/issues"
   },
   "scripts": {
-    "start": "grunt stage",
-    "notedonor": "grunt stage; grunt notedonor",
+    "start": "grunt stage; grunt playground",
     "test": "grunt test"
   },
   "homepage": "http://www.vexflow.com/vextab/",

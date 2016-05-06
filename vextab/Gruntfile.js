@@ -67,18 +67,6 @@ module.exports = function(grunt) {
           { src: TABDIV_SRC, dest: TABDIV_OUT }
         ]
       },
-      notedonor: {
-        options: {
-          // No need for this because of package.json "browserify" rule.
-          // transform: ['coffeeify'],
-          browserifyOptions: {
-            debug: true
-          }
-        },
-        files: [
-          { src: "../notedonor.js", dest: "../build/notedonor.js" }
-        ]
-      },
       playground: {
         options: {
           // No need for this because of package.json "browserify" rule.
@@ -98,7 +86,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['Gruntfile.js', 'src/*', 'tests/*'],
-        tasks: ['build', 'playground', 'lint'],
+        tasks: ['build', 'playground','notedonor', 'lint'],
         options: {
           interrupt: true
         }
@@ -191,6 +179,10 @@ module.exports = function(grunt) {
     //   $ npm link
     //   $ npm link vextab
     grunt.task.run('browserify:playground');
+  });
+
+  grunt.registerTask('notedonor', 'Build notedonor.', function() {
+    grunt.task.run('browserify:notedonor');
   });
 
   // Release current build.
