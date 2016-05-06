@@ -2,8 +2,10 @@
 ## Description
 Notedonor is platform though which symphonic music programs can ask for donatations. Multi-instrument scores transcribed into [vextab](http://www.vexflow.com/vextab/)
 
+A live version of Notedonor is used by [Sinfonía por la vida](www.sinfoniaporlavida.com)
+
 ## Dependencies
-Make sure you have npm installed.
+Make sure you have npm and php installed.
 
 ## Usage
 Clone the repo, and cd into it.
@@ -32,3 +34,8 @@ Notedonor is built using [npm](https://www.npmjs.com/) and the existing npm pack
 
 Vextab has been modified to have default enabled note playback and to support multiple instruments. An extra heirarchical layer called a stavegroup acts as the parent to staves. Each stave can be used to represent a different intstrument.
 
+Vexflow has been modified so that stavenotes have a donor_name attribute. When this attribute is non-blank, notes can be hovered to reveal the name. NOTE: This only works because our instance of Vextab has chosesn SVG as its context. Rafael and HTMLCanvas are no longer supported.
+
+MIDI.js remains unmodified.
+
+Notedonor is to be used in tandem with some payment system. We chose Paypal for the Sinfonía project because of Paypal's recognizability in Latin America and its acceptance of Diners Club International Cards (Discover).
