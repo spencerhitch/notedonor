@@ -105,7 +105,7 @@ notes ## | ## |
 notes ## | ## |
 
 stave clef=bass instrument=timpani
-notes :8## | :4 C*/3 ## :h## |
+notes :8## | :4 C+Éspenser_Itchuác+/3 ## :h## |
 notes :4 C*-C*-C*/3 ## | :w## |
 notes ## | :h## :4C*/3 ## |
 notes :w ## |

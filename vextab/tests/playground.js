@@ -127,9 +127,7 @@ $(function() {
     if (!regex.test(last_name)) throw "Apellios requieren mayusculas. \n" 
                                       + "Ejemplo: Primera Segunda Tercera"
     first_name = first_name.replace(/\s/g, '_');
-    console.log("first_name after replace: ", first_name);
     last_name = last_name.replace(/\s/g, '_');
-    console.log("last_name after replace: ", last_name);
     return '+' + first_name + '_' + last_name + '+';
   }
 
@@ -139,7 +137,6 @@ $(function() {
 
     // Match the note duration
     var start = modify.thenOn.indexOf(":" + note_duration) + 1;
-    console.log("start_first: ", start);
     var eol = modify.thenOn.indexOf("stave");
 
     // Break if there's no more matching note_durations or if we pass the end of the line
@@ -151,14 +148,11 @@ $(function() {
         next = modify.thenOn.substring(eol);
       }
 
-      console.log('area', modify.thenOn.substring(start, next));
       if (modify.thenOn.substring(start, next).indexOf("*") >= 0) {
         var result = {cut: modify.cut + start, thenOn: modify.thenOn.substring(start)};
-        console.log("result", result);
         return result;
       }
       start = modify.thenOn.indexOf(":" + note_duration, start) + 1;
-      console.log("start_new: ", start);
     }
     throw "No more notes of that duration."
   }
