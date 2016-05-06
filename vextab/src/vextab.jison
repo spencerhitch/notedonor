@@ -89,9 +89,9 @@
 
 
 /* DONOR NAME */
-<notes>[+]                     { this.begin('name');  return '+';}
-<name>[A-Z][a-z]+_[A-Z][a-z]+   {return 'NAME' ;}
-<name>[+]                      { this.begin('notes'); return '+' ;}
+<notes>[+]                                     { this.begin('name');  return '+'; }
+<name>([A-ZÀ-Ú][a-zà-ú]+_)+[A-ZÀ-Ú][a-zà-ú]+   { return 'NAME' ; }
+<name>[+]                                      { this.begin('notes'); return '+' ;}
 
 
 /* Newlines reset your state */

@@ -120,23 +120,29 @@ $(function() {
   }
 
   function validate_name(first_name, last_name){
-    var regex =  new RegExp("^[A-Z][a-z]*$");
+    var regex =  /^([A-ZÀ-Ú][a-zà-ú]*\s?)+$/;
     if (first_name == "" || last_name == "") throw "Missing field";
-    if (!regex.test(first_name)) throw "First name must have initial capitalization."
-    if (!regex.test(last_name)) throw "Last name must have initial capitalization."
+    if (!regex.test(first_name)) throw "Nombres requieren mayusculas. \n"
+                                       + "Ejemplo: Primera Segunda Tercera";
+    if (!regex.test(last_name)) throw "Apellios requieren mayusculas. \n" 
+                                      + "Ejemplo: Primera Segunda Tercera"
+    first_name = first_name.replace(/\s/g, '_');
+    console.log("first_name after replace: ", first_name);
+    last_name = last_name.replace(/\s/g, '_');
+    console.log("last_name after replace: ", last_name);
+    return '+' + first_name + '_' + last_name + '+';
   }
 
   function validate_note(modify, note_duration) {
     //Find next duration-specifier matching note_duration and the specifier after that
     //If there's no mute between duration specifiers, find next duration-specifier and repeat
-//    var start =  s.indexOf(":"+ note_duration);
-//
 
     // Match the note duration
     var start = modify.thenOn.indexOf(":" + note_duration) + 1;
     console.log("start_first: ", start);
     var eol = modify.thenOn.indexOf("stave");
 
+    // Break if there's no more matching note_durations or if we pass the end of the line
     while (start < eol && start >= 0 ) {
 
       // Find the next note_duration
@@ -171,9 +177,10 @@ $(function() {
 
       var prev_content = text;
       var modify = findStaveN(prev_content, parseInt(instrument_number), 0);
+      var donor_name = "";
 
       try {
-        validate_name(first_name, last_name);
+        donor_name = validate_name(first_name, last_name);
         modify = validate_note(modify, note_duration);
       }
       catch (err) {
@@ -182,7 +189,6 @@ $(function() {
           e.preventDefault();
           return;
       }
-      var donor_name = '+' + first_name + '_' + last_name + '+';
 
       var new_content = prev_content.substring(0,modify.cut)
                       + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
