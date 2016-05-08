@@ -2,7 +2,7 @@ options player=true
 stavegroup
 
 stave instrument=oboe
-notes :8G+Maria_Del_Carmen_Araujo+/4 | C*/5 :4C*/5 :8G*/4 E*/5 :4E*/5 :8G*/4 |
+notes :8G*/4 | C*/5 :4C*/5 :8G*/4 E*/5 :4E*/5 :8G*/4 |
 notes C*/5 G*-E*-G*/4 :4C*/4 ## | :w ## |
 notes :w ## | :h ## :8 C*/5 :4 C*/5 :8 G*/4 | 
 notes :8E*/5 :4 E*/5 :8G*/4 C*-E*/5 A*/4 C*/5 |
@@ -37,7 +37,7 @@ notes  (F*/5.A*/5) ## (E*/5.G*/5) ## (D*/5.F*/5) ## (C*/5.E*/5) ## | :h (B*/4.D*
 
 
 stave instrument=trumpet
-notes :8G+Paula_Emilia_Jaramillo_Araujo_Buendia_Grijalva_Nunez+/4 | :4dC*/5 :8G*/4 :4dE*/5 :8G*/4 |
+notes :8G*/4 | :4dC*/5 :8G*/4 :4dE*/5 :8G*/4 |
 notes C*/5 G*-E*-G*/4 :4C*/4 ## | :w ## |
 notes :w ## | :h ## :4dC*/5 :8G*/4 |
 notes :4d E*/5 :8G*/4 :4C*/5 (C*/5.E*/5) |
@@ -71,7 +71,7 @@ notes (G*/4.G*/3) | (G*/4.G*/3) |
 notes (G*/4.G*/3) | :4 (G*/4.G*/3) ## :h ## |
 
 stave instrument=trumpet
-notes :8## | :4(E+Mélida_Buendía_Nuñez+/4.C+Mélida_Buendía_Nuñez+/5) ## :h## |
+notes :8## | :4(E*/4.C*/5) ## :h## |
 notes :4(E*/4.C*/5) (E*/4.C*/5) (E*/4.C*/5) ## | :w## |
 notes :w## | :h## :4(E*/4.C*/5) ## |
 notes :h## :4(C*/5.E*/5) (C*/5.E*/5) | 
