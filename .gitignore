@@ -1,0 +1,5 @@
+/vextab/node_modules/*
+/vexflow/node_modules/*
+/vextab/build/
+/vexflow/build/
+npm-debug.log
