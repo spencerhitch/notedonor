@@ -173,6 +173,7 @@ $(function() {
       var modify = findStaveN(prev_content, parseInt(instrument_number), 0);
       var donor_name = "";
 
+      //TODO: Selecting a note that's not available shouldn't be possible
       try {
         donor_name = validate_name(first_name, last_name);
         modify = validate_note(modify, note_duration);
@@ -187,8 +188,9 @@ $(function() {
       var new_content = prev_content.substring(0,modify.cut)
                       + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
       text = new_content;
-
-      $.post("./add_donor.php", {text : text}).done(render());
+      post_data  = {first_name: first_name, last_name: last_name, instrument_number:
+        instrument_number, note_duration: note_duration, current_text: text};
+      $.post("./modifyScore.php", post_data).done(render());
       e.preventDefault();
   });
 
