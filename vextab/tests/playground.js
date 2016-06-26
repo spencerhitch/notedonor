@@ -126,9 +126,9 @@ $(function() {
                                        + "Ejemplo: Primera Segunda Tercera";
     if (!regex.test(last_name)) throw "Apellios requieren mayusculas. \n" 
                                       + "Ejemplo: Primera Segunda Tercera"
-    first_name = first_name.replace(/\s/g, '_');
-    last_name = last_name.replace(/\s/g, '_');
-    return '+' + first_name + '_' + last_name + '+';
+//    first_name = first_name.replace(/\s/g, '_');
+//   last_name = last_name.replace(/\s/g, '_');
+//    return '+' + first_name + '_' + last_name + '+';
   }
 
   function validate_note(modify, note_duration) {
@@ -149,8 +149,9 @@ $(function() {
       }
 
       if (modify.thenOn.substring(start, next).indexOf("*") >= 0) {
-        var result = {cut: modify.cut + start, thenOn: modify.thenOn.substring(start)};
-        return result;
+        return;
+//        var result = {cut: modify.cut + start, thenOn: modify.thenOn.substring(start)};
+//        return result;
       }
       start = modify.thenOn.indexOf(":" + note_duration, start) + 1;
     }
@@ -169,14 +170,14 @@ $(function() {
           note_duration =  $("#buy_note input[name='note_duration']:checked").val().toString();
       }
 
-      var prev_content = text;
-      var modify = findStaveN(prev_content, parseInt(instrument_number), 0);
-      var donor_name = "";
+//      var prev_content = text;
+//      var modify = findStaveN(prev_content, parseInt(instrument_number), 0);
+//      var donor_name = "";
 
-      //TODO: Selecting a note that's not available shouldn't be possible
+      // TODO: Selecting a note that's not available shouldn't be possible
       try {
-        donor_name = validate_name(first_name, last_name);
-        modify = validate_note(modify, note_duration);
+        validate_name(first_name, last_name);
+        validate_note(modify, note_duration);
       }
       catch (err) {
           $("#error").html(err.replace(/[\n]/g, '<br/>'));
@@ -185,9 +186,9 @@ $(function() {
           return;
       }
 
-      var new_content = prev_content.substring(0,modify.cut)
-                      + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
-      text = new_content;
+      // var new_content = prev_content.substring(0,modify.cut)
+      //                + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
+      // text = new_content;
       post_data  = {first_name: first_name, last_name: last_name, instrument_number:
         instrument_number, note_duration: note_duration, current_text: text};
       $.post("./modifyScore.php", post_data).done(render());
