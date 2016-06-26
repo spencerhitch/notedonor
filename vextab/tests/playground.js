@@ -170,8 +170,7 @@ $(function() {
           note_duration =  $("#buy_note input[name='note_duration']:checked").val().toString();
       }
 
-//      var prev_content = text;
-//      var modify = findStaveN(prev_content, parseInt(instrument_number), 0);
+      var modify = findStaveN(text, parseInt(instrument_number), 0);
 //      var donor_name = "";
 
       // TODO: Selecting a note that's not available shouldn't be possible
