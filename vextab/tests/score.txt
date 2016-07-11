@@ -2,7 +2,7 @@ options player=true
 stavegroup
 
 stave instrument=oboe
-notes :8G+Paula_Jaramillo+/4 | C+Spencer_Hitchcock+/5 :4C*/5 :8G*/4 E*/5 :4E*/5 :8G*/4 |
+notes :8G+Paula_Jaramillo+/4 | C+Spencer_Hitchcock+/5 :4C+Spencer_Hitchcock+/5 :8G+Rodrigo_Kazuo+/4 E*/5 :4E*/5 :8G*/4 |
 notes C*/5 G*-E*-G*/4 :4C*/4 ## | :w ## |
 notes :w ## | :h ## :8 C*/5 :4 C*/5 :8 G*/4 | 
 notes :8E*/5 :4 E*/5 :8G*/4 C*-E*/5 A*/4 C*/5 |
@@ -37,7 +37,7 @@ notes  (F*/5.A*/5) ## (E*/5.G*/5) ## (D*/5.F*/5) ## (C*/5.E*/5) ## | :h (B*/4.D*
 
 
 stave instrument=trumpet
-notes :8G*/4 | :4dC*/5 :8G*/4 :4dE*/5 :8G*/4 |
+notes :8G+Nicky_Jaramillo+/4 | :4dC+Spencer_Hitchcock+/5 :8G*/4 :4dE*/5 :8G*/4 |
 notes C*/5 G*-E*-G*/4 :4C*/4 ## | :w ## |
 notes :w ## | :h ## :4dC*/5 :8G*/4 |
 notes :4d E*/5 :8G*/4 :4C*/5 (C*/5.E*/5) |

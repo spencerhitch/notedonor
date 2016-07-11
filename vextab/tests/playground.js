@@ -65,7 +65,7 @@ $(function() {
     try {
       vextab.reset();
       artist.reset();
-      $.get("./score.txt", function(data) {
+      $.get("./score_alltime.txt", function(data) {
         text = data;
         vextab.parse(data);
         artist.render(renderer);
@@ -191,7 +191,7 @@ $(function() {
       post_data  = {first_name: first_name, last_name: last_name, instrument_number:
         instrument_number, note_duration: note_duration, current_text: text};
       $.post("./modifyScore.php", post_data).done(render());
-      e.preventDefault();
+//      e.preventDefault();
   });
 
   $("#busca_mi_nota").submit(function(e) {
