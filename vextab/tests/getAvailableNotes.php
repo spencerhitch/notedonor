@@ -4,24 +4,25 @@
  * the $next note belonging to INSTRUMENT_NUMBER with NOTE_DURATION.
  */
 
-function findStaveN($s, $n, $cut){
-  if ($n < 1) {
-    return;
-  }
-  $start =  strpos($s, "stave ") + 6;
-  $sub = substr($s, $start);
+function findStaveN($s, $n, $start){
+//  if ($n < 1) {
+//    //TODO, doesn't work for final instrument
+//    return;
+//  }
+  $start =  strpos($s, "stave ",$start) + 6;
+  $length =  strpos($s, "stave ", $start) - $start;
   if ($n == 1) {
-    //TODO, doesn't work for final instrument
-    return [
-      "thenOn" => $sub, 
-      "cut" => $cut+$start,
-    ];
+    if ($length > 0) {
+      return substr($s, $start, $length);
+    }
+    return substr($s, $start);
   }
-  return findStaveN($sub, $n-1, $cut+$start); 
+  return findStaveN($s, $n-1, $start); 
 }
 
 function findAvailableNotes($s, $n){
-
+  $stave = findStaveN($s,$n,0);
+  return $stave;
 }
 
 if( $_POST['instrument_number'] ) {
@@ -36,9 +37,7 @@ if( $_POST['instrument_number'] ) {
 
   //Subtract purchases from each category. If # == 0 don't display.
 
-  
-
-  echo "Test";
+  echo $available_notes;
 
 exit();
 }
