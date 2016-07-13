@@ -20,9 +20,9 @@ function findStaveN($s, $n, $cut){
   return findStaveN($sub, $n-1, $cut+$start); 
 }
 
+//Find $next duration-specifier matching note_duration and the specifier after that
+//If there's no mute between duration specifiers, find $next duration-specifier and repeat
 function findNextValidNote($modify, $note_duration) {
-  //Find $next duration-specifier matching note_duration and the specifier after that
-  //If there's no mute between duration specifiers, find $next duration-specifier and repeat
 
   // Match the note duration
   $start = strpos($modify["thenOn"], ":" + $note_duration) + 1;

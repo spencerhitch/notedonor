@@ -470,6 +470,7 @@ Vex.Flow.Stave = (function() {
       this.formatted = true;
     },
 
+
     /**
      * All drawing functions below need the context to be set.
      */
@@ -481,7 +482,7 @@ Vex.Flow.Stave = (function() {
 
       var num_lines = this.options.num_lines;
       var width = this.width;
-      var x = this.x;
+      var x = this.x; 
       var y;
 
       // Render lines

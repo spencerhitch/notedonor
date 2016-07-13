@@ -65,7 +65,7 @@ $(function() {
     try {
       vextab.reset();
       artist.reset();
-      $.get("./score_alltime.txt", function(data) {
+      $.get("./score.txt", function(data) {
         text = data;
         vextab.parse(data);
         artist.render(renderer);
