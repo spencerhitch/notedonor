@@ -158,15 +158,39 @@ $(function() {
     throw "No more notes of that duration."
   }
 
+  Values = {
+    "thirtyseconds": ["32", "Fusa"],
+    "sixteenths": ["16", "Semicorchea"],
+    "eighths": ["8", "Corchea"],
+    "dotted_eighths": ["8d", "Corchea con puntillo"],
+    "quarters": ["4", "Negra"],
+    "dotted_quarters": ["4d", "Negra con puntillo"],
+    "halves": ["h", "Blanca"],
+    "dotted_halves": ["hd", "Blanca con puntillo"],
+    "wholes": ["w", "Redonda"]
+  }
+
   $('input:radio[name="instrument"]').change(function(e){
+    $('.note_duration').empty();
     var instrument_number = $("#buy_note input[name='instrument']:checked").val();
     post_data= {instrument_number: instrument_number};
     $.ajax({
       type: 'POST',
       url: './getAvailableNotes.php', 
+      dataType: "JSON",
       data: post_data,
-      success: function(d){
-                 console.log(d);
+      success: function(json) {
+                 var html = "";
+                 for (var duration in json) {
+                   if (json[duration] > 0) {
+                     var value =  Values[duration][0]
+                     var name =  Values[duration][1]
+                     var input = "<input type='radio' name='note_duration' value='"
+                                 + value +  "'>" + name ;
+                     html = html.concat(input);
+                   }
+                 }
+                 $('.note_duration').append(html);
                }
     });
   });

@@ -22,7 +22,64 @@ function findStaveN($s, $n, $start){
 
 function findAvailableNotes($s, $n){
   $stave = findStaveN($s,$n,0);
-  return $stave;
+
+  // Count 32nd notes
+  $matches=  array();
+  preg_match_all("/:32\(?[A-G][#@n]?\*/", $stave, $matches);
+  $thirtyseconds = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count 16th notes
+  $matches=  array();
+  preg_match_all("/:16\(?[A-G][#@n]?\*/", $stave, $matches);
+  $sixteenths = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count 8th notes
+  $matches=  array();
+  preg_match_all("/:8\(?[A-G][#@n]?\*/", $stave, $matches);
+  $eighths = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count dotted 8th notes
+  $matches=  array();
+  preg_match_all("/:8d\(?[A-G][#@n]?\*/", $stave, $matches);
+  $dotted_eighths = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count quarter notes
+  $matches=  array();
+  preg_match_all("/:4\(?[A-G][#@n]?\*/", $stave, $matches);
+  $quarters = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count dotted quarter notes
+  $matches=  array();
+  preg_match_all("/:4d\(?[A-G][#@n]?\*/", $stave, $matches);
+  $dotted_quarters = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count half notes
+  $matches=  array();
+  preg_match_all("/:h\(?[A-G][#@n]?\*/", $stave, $matches);
+  $halves = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count dotted half notes
+  $matches=  array();
+  preg_match_all("/:hd\(?[A-G][#@n]?\*/", $stave, $matches);
+  $dotted_halves = isset($matches[0]) ? count($matches[0]) : 0;
+
+  // Count whole notes
+  $matches=  array();
+  preg_match_all("/:w\(?[A-G][#@n]?\*/", $stave, $matches);
+  $wholes = isset($matches[0]) ? count($matches[0]) : 0;
+
+  $occurances = array(
+   "wholes" => $wholes,
+   "dotted_halves" => $dotted_halves,
+   "halves" => $halves,
+   "dotted_quarters" => $dotted_quarters,
+   "quarters" => $quarters,
+   "dotted_eighths" => $dotted_eighths,
+   "eighths" => $eighths,
+   "sixteenths" => $sixteenths,
+   "thirtyseconds" => $thirtyseconds,
+  );
+  return json_encode($occurances);
 }
 
 if( $_POST['instrument_number'] ) {
