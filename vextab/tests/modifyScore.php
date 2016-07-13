@@ -81,6 +81,8 @@ if( $_POST['first_name'] and $_POST['last_name'] and $_POST['instrument_number']
 
   $donor_name = "+" . $first_name . "_" . $last_name . "+";
 
+  // The first thing we need an ajax call which takes an instrument as 
+  // an argument and returns a list of available notes for that instrument
   $modify = findStaveN($current_text, intval($instrument_number), 0);
   $modify = findNextValidNote($modify, $note_duration);
   $new_content = substr($current_text, 0, $modify["cut"]) .

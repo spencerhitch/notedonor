@@ -157,6 +157,19 @@ $(function() {
     }
     throw "No more notes of that duration."
   }
+
+  $('input:radio[name="instrument"]').change(function(e){
+    var instrument_number = $("#buy_note input[name='instrument']:checked").val();
+    post_data= {instrument_number: instrument_number};
+    $.ajax({
+      type: 'POST',
+      url: './getAvailableNotes.php', 
+      data: post_data,
+      success: function(d){
+                 console.log(d);
+               }
+    });
+  });
   
   $("#buy_note").submit(function(e) {
       var first_name = "";
@@ -193,6 +206,7 @@ $(function() {
       $.post("./modifyScore.php", post_data).done(render());
 //      e.preventDefault();
   });
+
 
   $("#busca_mi_nota").submit(function(e) {
       var first_name = "";
