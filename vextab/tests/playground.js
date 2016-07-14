@@ -170,7 +170,7 @@ $(function() {
     "wholes": ["w", "Redonda"]
   }
 
-  $('input:radio[name="instrument"]').change(function(e){
+  function renderAvailableNotesInputs() {
     $('.note_duration').empty();
     var instrument_number = $("#buy_note input[name='instrument']:checked").val();
     post_data= {instrument_number: instrument_number};
@@ -193,6 +193,10 @@ $(function() {
                  $('.note_duration').append(html);
                }
     });
+  }
+
+  $('input:radio[name="instrument"]').change(function(e) {
+    renderAvailableNotesInputs();
   });
   
   $("#buy_note").submit(function(e) {
@@ -281,4 +285,5 @@ $(function() {
 
   $("#blah").keyup(_.throttle(render, 250));
   render();
+  renderAvailableNotesInputs();
 });
