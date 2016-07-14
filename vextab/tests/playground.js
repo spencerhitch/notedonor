@@ -159,15 +159,15 @@ $(function() {
   }
 
   Values = {
-    "thirtyseconds": ["32", "Fusa"],
-    "sixteenths": ["16", "Semicorchea"],
-    "eighths": ["8", "Corchea"],
-    "dotted_eighths": ["8d", "Corchea con puntillo"],
-    "quarters": ["4", "Negra"],
-    "dotted_quarters": ["4d", "Negra con puntillo"],
-    "halves": ["h", "Blanca"],
-    "dotted_halves": ["hd", "Blanca con puntillo"],
-    "wholes": ["w", "Redonda"]
+    "thirtyseconds": ["32", "Fusa", "$2000"],
+    "dotted_eighths": ["8d", "Corchea con puntillo", "$2000"],
+    "dotted_halves": ["hd", "Blanca con puntillo", "2000"],
+    "dotted_quarters": ["4d", "Negra con puntillo", "$1000"],
+    "wholes": ["w", "Redonda", "$500"]
+    "halves": ["h", "Blanca", "$200"],
+    "quarters": ["4", "Negra", "$100"],
+    "sixteenths": ["16", "Semicorchea", "$50"],
+    "eighths": ["8", "Corchea", "$20"],
   }
 
   function renderAvailableNotesInputs() {
@@ -183,10 +183,11 @@ $(function() {
                  var html = "";
                  for (var duration in json) {
                    if (json[duration] > 0) {
-                     var value =  Values[duration][0]
-                     var name =  Values[duration][1]
+                     var value =  Values[duration][0];
+                     var name =  Values[duration][1];
+                     var amount = Values[duration][2];
                      var input = "<input type='radio' name='note_duration' value='"
-                                 + value +  "'>" + name ;
+                                 + value +  "'> " + name + " | " + amount + " ";
                      html = html.concat(input);
                    }
                  }

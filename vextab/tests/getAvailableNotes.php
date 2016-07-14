@@ -69,14 +69,14 @@ function findAvailableNotes($s, $n){
   $wholes = isset($matches[0]) ? count($matches[0]) : 0;
 
   $occurances = array(
-   "wholes" => $wholes,
-   "dotted_halves" => $dotted_halves,
-   "halves" => $halves,
-   "dotted_quarters" => $dotted_quarters,
-   "quarters" => $quarters,
-   "dotted_eighths" => $dotted_eighths,
    "eighths" => $eighths,
    "sixteenths" => $sixteenths,
+   "quarters" => $quarters,
+   "halves" => $halves,
+   "wholes" => $wholes,
+   "dotted_quarters" => $dotted_quarters,
+   "dotted_halves" => $dotted_halves,
+   "dotted_eighths" => $dotted_eighths,
    "thirtyseconds" => $thirtyseconds,
   );
   return json_encode($occurances);
