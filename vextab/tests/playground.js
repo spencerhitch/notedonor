@@ -163,7 +163,7 @@ $(function() {
     "dotted_eighths": ["8d", "Corchea con puntillo", "$2000"],
     "dotted_halves": ["hd", "Blanca con puntillo", "2000"],
     "dotted_quarters": ["4d", "Negra con puntillo", "$1000"],
-    "wholes": ["w", "Redonda", "$500"]
+    "wholes": ["w", "Redonda", "$500"],
     "halves": ["h", "Blanca", "$200"],
     "quarters": ["4", "Negra", "$100"],
     "sixteenths": ["16", "Semicorchea", "$50"],
@@ -208,7 +208,7 @@ $(function() {
       if ($("#buy_note input[name='first_name']").val() && $("#buy_note input[name='last_name']").val()) {
           first_name = $("#buy_note input[name='first_name']").val();
           last_name = $("#buy_note input[name='last_name']").val();
-          instrument_number = $("#buy_note input[name='instrument']:checked").val();
+          instrument_number = $("#buy_note input[name='instrument']:checked").val().toString();
           note_duration =  $("#buy_note input[name='note_duration']:checked").val().toString();
       }
 
@@ -231,8 +231,8 @@ $(function() {
       //                + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
       // text = new_content;
       post_data  = {first_name: first_name, last_name: last_name, instrument_number:
-        instrument_number, note_duration: note_duration, current_text: text};
-      $.post("./modifyScore.php", post_data).done(render());
+        instrument_number, note_duration: note_duration};
+      $.post("./dbPost.php", post_data).done(render());
 //      e.preventDefault();
   });
 

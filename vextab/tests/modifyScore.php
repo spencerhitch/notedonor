@@ -11,7 +11,6 @@ function findStaveN($s, $n, $cut){
   $start =  strpos($s, "stave ") + 6;
   $sub = substr($s, $start);
   if ($n == 1) {
-    //TODO, doesn't work for final instrument
     return [
       "thenOn" => $sub, 
       "cut" => $cut+$start,
@@ -47,8 +46,6 @@ function findNextValidNote($modify, $note_duration) {
     }
     $start = strpos($modify["thenOn"], ":" + $note_duration, $start) + 1;
   }
-  // TODO: THIS IS a big Error if it happens
-  error_log("No more notes of that duration.");
 }
 
 function replaceNextMuteWithDonor($s, $d) {

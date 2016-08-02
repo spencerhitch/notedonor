@@ -1,11 +1,21 @@
 <?php
 
-$servername = "localhost";
-$username = "sinfonia";
-$password = "Ow8!A:VAEqmX";
-$dbname = "note_queue";
+include "../notequeueAuth.php";
 
-$sql = "INSERT INTO " + $dbname + "(firstname, lastname, instrument, noteduration) VALUES ('Spencer', 'Hitchcock', '1', '8')";
+echo $username ;
+
+$newtext = "";//"'" . file_get_contents("public_html/score_modified.txt") . "'";
+$firstname = "'Nicky'";
+$lastname = "'Jaramillo'";
+
+if($_POST['first_name']) {
+	$firstname = "'".$_POST['first_name']."'";
+}
+if($_POST['last_name']) {
+	$lastname = "'".$_POST['last_name']."'";
+}
+
+$sql = "INSERT INTO notes (firstname, lastname, instrument, duration, verified) VALUES ($firstname, $lastname, '1', '8', 0)";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

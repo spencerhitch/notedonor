@@ -79,8 +79,29 @@ function findAvailableNotes($s, $n){
    "dotted_eighths" => $dotted_eighths,
    "thirtyseconds" => $thirtyseconds,
   );
-  return json_encode($occurances);
+  return $occurances;
 }
+
+function subtractUnverified($a,$u) {
+  $values= array(
+   "8" => "eighths",
+   "16" => "sixteenths",
+   "q" => "quarters",
+   "4" => "halves",
+   "w" => "wholes",
+   "qd" => "dotted_quarters",
+   "4d" => "dotted_halves",
+   "8d" => "dotted_eighths",
+   "32" => "thirtyseconds",
+  );
+
+  foreach($u as &$v){
+    $a[$values[$v]] = $a[$values[$v]] - 1;
+  }
+  return $a;
+
+}
+
 
 if( $_POST['instrument_number'] ) {
 
@@ -88,13 +109,16 @@ if( $_POST['instrument_number'] ) {
   $score = file_get_contents('./score.txt');
 
   //Count the number of available notes of every type exist for the instrument
-  $available_notes = findAvailableNotes($score, $instrument_number);
+  $available_notes = findAvailableNotes($score, intval($instrument_number));
 
-  //TODO Query SQL for queued purchases
+  //Query SQL for queued purchases
+  include '../dbGet.php';
+  $unverified_notes = queryUnverified($instrument_number);
 
   //Subtract purchases from each category. If # == 0 don't display.
+  $available_notes = subtractUnverified($available_notes, $unverified_notes);
 
-  echo $available_notes;
+  echo json_encode($available_notes);
 
 exit();
 }
