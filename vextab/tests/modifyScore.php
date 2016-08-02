@@ -4,89 +4,50 @@
  * the $next note belonging to INSTRUMENT_NUMBER with NOTE_DURATION.
  */
 
-function findStaveN($s, $n, $cut){
-  if ($n < 1) {
-    return;
-  }
-  $start =  strpos($s, "stave ") + 6;
-  $sub = substr($s, $start);
+function L($s){
+  error_log($s. "\n", 3, "./errors.log");
+}
+
+function findStaveN($s, $n, $start){
+  $start =  strpos($s, "stave ",$start) + 6;
   if ($n == 1) {
-    return [
-      "thenOn" => $sub, 
-      "cut" => $cut+$start,
-    ];
+    return $start;
   }
-  return findStaveN($sub, $n-1, $cut+$start); 
+  return findStaveN($s, $n-1, $start); 
 }
 
-//Find $next duration-specifier matching note_duration and the specifier after that
-//If there's no mute between duration specifiers, find $next duration-specifier and repeat
-function findNextValidNote($modify, $note_duration) {
-
-  // Match the note duration
-  $start = strpos($modify["thenOn"], ":" + $note_duration) + 1;
-  $eol = strpos($modify["thenOn"], "stave");
-
-  // Break if there's no more matching note_durations or if we pass the end of the line
-  while ($start < $eol and $start >= 0 ) {
-
-    // Find the $next note_duration
-    $next = strpos($modify["thenOn"], ":", $start);
-    if ($next <= 0) {
-      $next = substr($modify["thenOn"], $eol);
-    }
-
-    if (strpos(substr($modify["thenOn"], $start, $next), "*") >= 0) {
-      $result = [
-        "cut" => $modify["cut"] + $start, 
-        "thenOn" => substr($modify["thenOn"], $start)
-      ];
-//        error_log("THENON in findNextValidNote: " . substr($result["thenOn"], 0,300));
-        return $result;
-    }
-    $start = strpos($modify["thenOn"], ":" + $note_duration, $start) + 1;
-  }
-}
-
-function replaceNextMuteWithDonor($s, $d) {
-  $open_paren = strpos($s, '(');
-  $close_paren = strpos($s, ')');
-  $first_asterisk = strpos($s, '*');
-  if ($first_asterisk > $open_paren and $first_asterisk < $close_paren) {
-    while ($first_asterisk > $open_paren and $first_asterisk < $close_paren) {
-      $s = preg_replace('/\*/',$d,$s,1);
-      $first_asterisk = strpos($s, '*');
-      $open_paren = strpos($s,'(');
-      $close_paren = strpos($s,')');
-    }
-    error_log("S in replaceNextMuteWithDonor: " . substr($s,0,300));
-    return $s;
-  } else {
-    $result= preg_replace('/\*/',$d,$s,1);
-    return $result;
-  }
+function replaceNextMatchingNote($text, $instr_val, $dur, $donor) {
+  $stave_start = findStaveN($text, $instr_val, 0);
+  $pattern = "/:" . $dur . "\(?[A-G][#@n]?\*/";
+  $matches = []; 
+  preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $stave_start);
+  $match_index =  $matches[0][1];
+  $star_index = strpos($text, '*', $match_index);
+  $first_portion = substr($text,0, $star_index);
+  $second_portion = substr($text, $star_index+1);
+  $concatenated = $first_portion . $donor . $second_portion;
+  return $concatenated;
 }
 
 if( $_POST['first_name'] and $_POST['last_name'] and $_POST['instrument_number'] 
-  and $_POST['note_duration'] and $_POST['current_text']) {
+  and $_POST['note_duration'] ) {
 
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
-  $instrument_number = $_POST['instrument_number'];
+  $instrument_number = intval($_POST['instrument_number']);
   $note_duration = $_POST['note_duration'];
-  $current_text = $_POST['current_text'];
+  $current_text = file_get_contents('score.txt');
 
   $donor_name = "+" . $first_name . "_" . $last_name . "+";
 
-  // The first thing we need an ajax call which takes an instrument as 
-  // an argument and returns a list of available notes for that instrument
-  $modify = findStaveN($current_text, intval($instrument_number), 0);
-  $modify = findNextValidNote($modify, $note_duration);
-  $new_content = substr($current_text, 0, $modify["cut"]) .
-    replaceNextMuteWithDonor($modify["thenOn"], $donor_name);
+  $new_text = replaceNextMatchingNote($current_text, 
+                                      $instrument_number, 
+                                      $note_duration,
+                                      $donor_name
+                                     );
 
   $file = fopen("score.txt","w");
-  fwrite($file,$new_content);
+  fwrite($file,$new_text);
 
 exit();
 }
