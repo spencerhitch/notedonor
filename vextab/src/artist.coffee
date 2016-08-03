@@ -353,7 +353,6 @@ class Artist
       auto_stem: if params.is_rest then false else true
     })
     if params.donor_name?.length > 0
-      console.log "Adding stave note params", params
     stave_note.setDonor params.donor_name
     if params.accidentals?[0] == 'm'
       L "params: ", params
@@ -870,7 +869,6 @@ class Artist
       if note.abc?
         if note.abc.donor_name?
           donor_name = note.abc.donor_name
-          console.log "Donor name", note
         octave = if note.octave? then note.octave else note.string
         [new_note, new_octave, accidental] = @getNoteForABC(note.abc, octave)
         if accidental?

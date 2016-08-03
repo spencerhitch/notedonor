@@ -16,17 +16,26 @@ function findStaveN($s, $n, $start){
   return findStaveN($s, $n-1, $start); 
 }
 
+function chordTakeover($s){
+  if (strpos($s, '*') >= strpos($s,')')){
+    return $s;
+  } else {
+    return chordTakeover(substr_replace($s, "", strpos($s, '*'),1));
+  }
+}
+
 function replaceNextMatchingNote($text, $instr_val, $dur, $donor) {
   $stave_start = findStaveN($text, $instr_val, 0);
-  $note_pattern = "(:" . $dur . "[A-G][#@n]?\*)";
-  $chord_pattern = "(:" . $dur . "\(\S*\*\S*\))";
-  $pattern =  "/" . $note_pattern . "|" . $chord_pattern . "/";
+  $pattern = "/:" . $dur . "\(?[A-G][#@n]?\*/";
   $matches = []; 
   preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $stave_start);
   $match_index =  $matches[0][1];
   $star_index = strpos($text, '*', $match_index);
   $first_portion = substr($text,0, $star_index);
   $second_portion = substr($text, $star_index+1);
+  if (strpos($matches[0][0], '(') !== false) {
+    $second_portion = chordTakeover($second_portion);
+  }
   $concatenated = $first_portion . $donor . $second_portion;
   return $concatenated;
 }
