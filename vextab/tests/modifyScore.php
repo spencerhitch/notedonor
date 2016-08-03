@@ -18,7 +18,9 @@ function findStaveN($s, $n, $start){
 
 function replaceNextMatchingNote($text, $instr_val, $dur, $donor) {
   $stave_start = findStaveN($text, $instr_val, 0);
-  $pattern = "/:" . $dur . "\(?[A-G][#@n]?\*/";
+  $note_pattern = "(:" . $dur . "[A-G][#@n]?\*)";
+  $chord_pattern = "(:" . $dur . "\(\S*\*\S*\))";
+  $pattern =  "/" . $note_pattern . "|" . $chord_pattern . "/";
   $matches = []; 
   preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $stave_start);
   $match_index =  $matches[0][1];

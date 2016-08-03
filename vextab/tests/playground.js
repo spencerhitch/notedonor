@@ -232,7 +232,7 @@ $(function() {
       // text = new_content;
       post_data  = {first_name: first_name, last_name: last_name, instrument_number:
         instrument_number, note_duration: note_duration};
-      $.post("./dbPost.php", post_data).done(render());
+      $.post("./modifyScore.php", post_data).done(render());
 //      e.preventDefault();
   });
 
