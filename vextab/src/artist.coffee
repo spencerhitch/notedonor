@@ -352,7 +352,6 @@ class Artist
       clef: if params.is_rest then "treble" else @current_clef
       auto_stem: if params.is_rest then false else true
     })
-    if params.donor_name?.length > 0
     stave_note.setDonor params.donor_name
     if params.accidentals?[0] == 'm'
       L "params: ", params
