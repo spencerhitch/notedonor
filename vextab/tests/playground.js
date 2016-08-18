@@ -163,15 +163,15 @@ $(function() {
   }
 
   Values = {
-    "thirtyseconds": ["32", "Fusa", "$2000"],
-    "dotted_eighths": ["8d", "Corchea con puntillo", "$2000"],
-    "dotted_halves": ["hd", "Blanca con puntillo", "2000"],
-    "dotted_quarters": ["4d", "Negra con puntillo", "$1000"],
-    "wholes": ["w", "Redonda", "$500"],
-    "halves": ["h", "Blanca", "$200"],
-    "quarters": ["4", "Negra", "$100"],
-    "sixteenths": ["16", "Semicorchea", "$50"],
-    "eighths": ["8", "Corchea", "$20"],
+    "thirtyseconds": ["32", "Fusa", "$2000", "./note_svgs/32.svg"],
+    "dotted_eighths": ["8d", "Corchea con puntillo", "$2000", "./note_svgs/8d.svg"],
+    "dotted_halves": ["hd", "Blanca con puntillo", "2000", "./note_svgs/hd.svg"],
+    "dotted_quarters": ["4d", "Negra con puntillo", "$1000", "./note_svgs/4d.svg"],
+    "wholes": ["w", "Redonda", "$500", "./note_svgs/w.svg"],
+    "halves": ["h", "Blanca", "$200", "./note_svgs/h.svg"],
+    "quarters": ["4", "Negra", "$100", "./note_svgs/4.svg"],
+    "sixteenths": ["16", "Semicorchea", "$50", "./note_svgs/16.svg"],
+    "eighths": ["8", "Corchea", "$20", "./note_svgs/8.svg"],
   }
 
   function renderAvailableNotesInputs() {
@@ -190,8 +190,9 @@ $(function() {
                      var value =  Values[duration][0];
                      var name =  Values[duration][1];
                      var amount = Values[duration][2];
+                     var url = Values[duration][3];
                      var input = "<input type='radio' name='note_duration' value='"
-                                 + value +  "'> " + name + " | " + amount + " ";
+                                 + value +  "'> <img src='" + url + "'> " + name + " | " + amount + " ";
                      html = html.concat(input);
                    }
                  }
