@@ -168,7 +168,17 @@ class Vex.Flow.Player
       total_ticks.add(max_voice_tick)
 
     @all_ticks = _.sortBy(_.values(@tick_notes), (tick) -> tick.value)
+    @stop_index = @getStopIndex(@all_ticks)
     @total_ticks = _.last(@all_ticks)
+
+  # Index at which to stop playing. Notes after this note should all be non-sounding
+  getStopIndex: (all_ticks) ->
+    for value, index in all_ticks.reverse()
+      if value.notes[0].noteType != "n" and value.notes[0].noteType != "r"
+        console.log value.notes[0]
+        return all_ticks.length - index
+    console.log "returning 0"
+    return 0
 
   updateMarker: (x, y) ->
     L "update marker: ", x, y
@@ -208,8 +218,9 @@ class Vex.Flow.Player
     if @current_ticks >= @next_event_tick and @all_ticks.length > 0
       @playNote @all_ticks[@next_index].notes
       @next_index++
-      if @next_index >= @all_ticks.length
+      if @next_index >= @all_ticks.length or @next_index >= @stop_index
         @done = true
+        @conductor.done_count += 1
       else
         @next_event_tick = @all_ticks[@next_index].tick.value()
 

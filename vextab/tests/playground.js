@@ -19,6 +19,10 @@ $(function() {
     current_scroll: 0,
     scrollInterval: setInterval(function() {
       if (autoscroll.isScrolling){
+        console.log(artist.conductor.done_count);
+        if (artist.conductor.done_count == 8) {
+          stopAutoScroll();
+        }
         autoscroll.current_scroll = autoscroll.current_scroll + 16.5;
         score_scroll.scrollLeft(autoscroll.current_scroll);
       } else if (autoscroll.current_scroll != 0) {

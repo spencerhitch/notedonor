@@ -56,6 +56,7 @@ class Vex.Flow.Conductor
     _.extend(@options, options) if options?
     L "Using soundfonts in: #{@options.soundfont_url}"
     @paper = null
+    @done_count = 0
     @reset()
 
   setArtist: (artist) ->
@@ -163,6 +164,7 @@ class Vex.Flow.Conductor
 
   startPlayers: ->
     L "Starting Players"
+    @done_count = 0
     @playing_now = true
     @play_button.fillColor = '#a36' if @play_button?
     _.each(@players, (player) -> player.start())
@@ -179,10 +181,6 @@ class Vex.Flow.Conductor
     if flag
       @startPlayers()
     else
-#      self.loading_message.content = "Loading instruments..."
-#      self.loading_message.fillColor = "green"
-#      self.loading = true
-#      self.paper.view.draw()
       _.each(@players, (player) ->
         Vex.Flow.Conductor.INSTRUMENTS_LOADED[player.instrument] = true
         MIDI.programChange(player.channelNumber, INSTRUMENTS[player.instrument]))
