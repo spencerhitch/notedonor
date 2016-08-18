@@ -112,11 +112,11 @@ if( $_POST['instrument_number'] ) {
   $available_notes = findAvailableNotes($score, intval($instrument_number));
 
   //Query SQL for queued purchases
-  include '../dbGet.php';
-  $unverified_notes = queryUnverified($instrument_number);
+//  include '../dbGet.php';
+//  $unverified_notes = queryUnverified($instrument_number);
 
   //Subtract purchases from each category. If # == 0 don't display.
-  $available_notes = subtractUnverified($available_notes, $unverified_notes);
+//  $available_notes = subtractUnverified($available_notes, $unverified_notes);
 
   echo json_encode($available_notes);
 
