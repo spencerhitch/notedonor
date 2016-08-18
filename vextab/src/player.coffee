@@ -173,11 +173,10 @@ class Vex.Flow.Player
 
   # Index at which to stop playing. Notes after this note should all be non-sounding
   getStopIndex: (all_ticks) ->
-    for value, index in all_ticks.reverse()
-      if value.notes[0].noteType != "n" and value.notes[0].noteType != "r"
-        console.log value.notes[0]
+    all_ticks_reverse = all_ticks.slice(0).reverse()
+    for value, index in all_ticks_reverse
+      if value.notes[0].playNote and value.notes[0].playNote[0].indexOf("*") == -1
         return all_ticks.length - index
-    console.log "returning 0"
     return 0
 
   updateMarker: (x, y) ->
@@ -219,8 +218,8 @@ class Vex.Flow.Player
       @playNote @all_ticks[@next_index].notes
       @next_index++
       if @next_index >= @all_ticks.length or @next_index >= @stop_index
-        @done = true
         @conductor.done_count += 1
+        @done = true
       else
         @next_event_tick = @all_ticks[@next_index].tick.value()
 
