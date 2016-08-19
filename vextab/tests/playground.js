@@ -205,16 +205,17 @@ $(function() {
     renderAvailableNotesInputs();
   });
   
-  $("#buy_note").submit(function(e) {
+  $("#paypal_buynow_button").click(function(e) {
+      e.preventDefault();
       var first_name = "";
       var last_name = "";
-      var instrument_number = ""; 
+      var instrument_number = "0"; 
 
-      if ($("#buy_note input[name='first_name']").val() && $("#buy_note input[name='last_name']").val()) {
-          first_name = $("#buy_note input[name='first_name']").val();
-          last_name = $("#buy_note input[name='last_name']").val();
-          instrument_number = $("#buy_note input[name='instrument']:checked").val().toString();
-          note_duration =  $("#buy_note input[name='note_duration']:checked").val().toString();
+      if ($("#buy_note input[name='os2']").val() && $("#buy_note input[name='os3']").val()) {
+          first_name = $("#buy_note input[name='os2']").val();
+          last_name = $("#buy_note input[name='os3']").val();
+          instrument_number = $("#buy_note option[name='instrument']:selected").val().toString();
+          note_duration =  $("#buy_note option[name='note_duration']:selected").val().toString();
       }
 
       var modify = findStaveN(text, parseInt(instrument_number), 0);
@@ -230,15 +231,15 @@ $(function() {
           console.log("Throwing error: ", err);
           e.preventDefault();
           return;
-      }
+       }
 
       // var new_content = prev_content.substring(0,modify.cut)
       //                + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
       // text = new_content;
       post_data  = {first_name: first_name, last_name: last_name, instrument_number:
         instrument_number, note_duration: note_duration};
+      console.log("POST data: ", post_data);
       $.post("./modifyScore.php", post_data).done(render());
-//      e.preventDefault();
   });
 
   var busca_counter = 0;

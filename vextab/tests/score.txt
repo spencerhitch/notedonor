@@ -2,13 +2,13 @@ options player=true
 stavegroup 
 
 stave instrument=oboe 
-notes :8G+Spencer_Hitchcock+/4 | :8C*/5 :4C+Spencer_Hitchcock+/5 :8G*/4 :8E*/5 :4E+Spencer_Hitchcock+/5 :8G*/4 | 
-notes :8C*/5 :8G*/4 :8E*/4 :8G*/4 :4C+Spencer_Hitchcock+/4 :4## | :w## | 
-notes :w## | :h## :8C*/5 :4C+Spencer_Hitchcock+/5 :8G*/4 | 
-notes :8E*/5 :4E+Paula_Jaramillo+/5 :8G*/4 :8C*/5 :8E*/5 :8A*/4 :8C*/5 | 
-notes :4F#+Spencer_Hitchcock+/4 :4## :h## | :w## | 
+notes :8G*/4 | :8C*/5 :4C*/5 :8G*/4 :8E*/5 :4E*/5 :8G*/4 | 
+notes :8C*/5 :8G*/4 :8E*/4 :8G*/4 :4C*/4 :4## | :w## | 
+notes :w## | :h## :8C*/5 :4C*/5 :8G*/4 | 
+notes :8E*/5 :4E*/5 :8G*/4 :8C*/5 :8E*/5 :8A*/4 :8C*/5 | 
+notes :4F#*/4 :4## :h## | :w## | 
 notes :w## | :w## | 
-notes :h## :4G+Paula_Jaramillo+/4 :8## :8B*/4 | :4G*/4 :8## :8B*/4 :4G*/4 :8## :8B*/4 | 
+notes :h## :4G*/4 :8## :8B*/4 | :4G*/4 :8## :8B*/4 :4G*/4 :8## :8B*/4 | 
 notes :16G*/5 :16F#*/5 :16G*/5 :16A*/5 :16B*/5 :16A*/5 :16G*/5 :16F#*/5 :16G*/5 :16F#*/5 :16E*/5 :16D*/5 :16C*/5 :16B*/4 :16A*/4 :16G*/4 | 
 notes :8D*/5 :8C*/5 :8B*/4 :8G*/5 :8F#*/5 :8Cn*/5 :8B*/4 :8G*/5 | :4D*/5 :4A*/4 :4A*/4 :4## | 
 notes :wC*/5 | :wB*/4 | 
