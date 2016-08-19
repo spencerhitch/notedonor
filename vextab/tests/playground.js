@@ -192,7 +192,7 @@ $(function() {
                      var amount = Values[duration][2];
                      var url = Values[duration][3];
                      var input = "<input type='radio' name='note_duration' value='"
-                                 + value +  "'> <img src='" + url + "'> " + name + " | " + amount + " ";
+                                 + value +  "'> <img class='note_svg' src='" + url + "'> " + name + " | " + amount + " ";
                      html = html.concat(input);
                    }
                  }
