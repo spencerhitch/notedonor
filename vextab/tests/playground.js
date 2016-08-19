@@ -192,7 +192,7 @@ $(function() {
                      var amount = Values[duration][2];
                      var url = Values[duration][3];
                      var input = "<input type='radio' name='note_duration' value='"
-                                 + value +  "'> <img class='note_svg' src='" + url + "'> " + name + " | " + amount + " ";
+                                 + value +  "'> "  + name + " | " + amount + " <img class='note_svg' src='" + url + "'> ";
                      html = html.concat(input);
                    }
                  }
@@ -241,6 +241,7 @@ $(function() {
 //      e.preventDefault();
   });
 
+  var busca_counter = 0;
 
   $("#busca_mi_nota").submit(function(e) {
       var first_name = "";
@@ -258,12 +259,19 @@ $(function() {
           return;
       }
       var donor_name = first_name + '_' + last_name;
-      var elem = $("svg").find("svg").find("g#vf-" + donor_name);
+      var matching_elems = $("svg").find("svg").find("g#vf-" + donor_name);
+      var elem = matching_elems[busca_counter];
+      elem = $(elem);
 
       $(".score_container").scrollLeft(elem.position().left - 600);
 
       elem.find("path").css({"stroke" :"red", "fill":"red"});
       $(".score_container").find("div." + donor_name).show().css({"top":elem.position().top, "left":elem.position().left});
+
+      busca_counter += 1;
+      if (busca_counter > matching_elems.length - 1) {
+        busca_counter = 0;
+      }
 
       e.preventDefault();
   });
