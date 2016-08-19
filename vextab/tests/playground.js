@@ -165,7 +165,7 @@ $(function() {
   Values = {
     "thirtyseconds": ["32", "Fusa", "$2000", "./note_svgs/32.svg"],
     "dotted_eighths": ["8d", "Corchea con puntillo", "$2000", "./note_svgs/8d.svg"],
-    "dotted_halves": ["hd", "Blanca con puntillo", "2000", "./note_svgs/hd.svg"],
+    "dotted_halves": ["hd", "Blanca con puntillo", "$2000", "./note_svgs/hd.svg"],
     "dotted_quarters": ["4d", "Negra con puntillo", "$1000", "./note_svgs/4d.svg"],
     "wholes": ["w", "Redonda", "$500", "./note_svgs/w.svg"],
     "halves": ["h", "Blanca", "$200", "./note_svgs/h.svg"],
@@ -176,7 +176,7 @@ $(function() {
 
   function renderAvailableNotesInputs() {
     $('.note_duration').empty();
-    var instrument_number = $("#buy_note input[name='instrument']:checked").val();
+    var instrument_number = $("#buy_note option[name='instrument']:selected").val();
     post_data= {instrument_number: instrument_number};
     $.ajax({
       type: 'POST',
@@ -191,8 +191,8 @@ $(function() {
                      var name =  Values[duration][1];
                      var amount = Values[duration][2];
                      var url = Values[duration][3];
-                     var input = "<input type='radio' name='note_duration' value='"
-                                 + value +  "'> "  + name + " | " + amount + " <img class='note_svg' src='" + url + "'> ";
+                     var input = "<option name='note_duration' value='"
+                                 + value +  "'> "  + name + " | " + amount + " USD <img class='note_svg' src='" + url + "'></option>";
                      html = html.concat(input);
                    }
                  }
@@ -201,7 +201,7 @@ $(function() {
     });
   }
 
-  $('input:radio[name="instrument"]').change(function(e) {
+  $('select[name="os1"]').change(function(e) {
     renderAvailableNotesInputs();
   });
   
