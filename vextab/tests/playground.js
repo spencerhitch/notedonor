@@ -206,7 +206,6 @@ $(function() {
   });
   
   $("#paypal_buynow_button").click(function(e) {
-      e.preventDefault();
       var first_name = "";
       var last_name = "";
       var instrument_number = "0"; 
@@ -238,8 +237,7 @@ $(function() {
       // text = new_content;
       post_data  = {first_name: first_name, last_name: last_name, instrument_number:
         instrument_number, note_duration: note_duration};
-      console.log("POST data: ", post_data);
-      $.post("./modifyScore.php", post_data).done(render());
+      $.post("./dbPost.php", post_data).done(render());
   });
 
   var busca_counter = 0;
