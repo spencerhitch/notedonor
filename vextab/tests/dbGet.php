@@ -31,14 +31,16 @@ function queryUnverified($instrument) {
 
 }
 
-function queryByName($firstname, $lastname) {
+function queryByEmail($email) {
 
 	$servername = "localhost";
 	$username = "sinfonia";
 	$password = "Belarus Kiev";
 	$dbname = "note_queue";
 
-	$sql = "SELECT new_text FROM notes WHERE firstname='". $firstname . "' AND lastname='" . $lastname . "'";
+  $sql = "SELECT * FROM notes 
+    WHERE email='" . $email . "'
+    AND verified=0";
 
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -51,8 +53,12 @@ function queryByName($firstname, $lastname) {
 		if ($result->num_rows > 0) {
 		    // output data of each row
 		    while($row = $result->fetch_assoc()) {
-			echo "newtext: " . $row["new_text"]. "\n";
-			return $row["new_text"];
+          $result = array(
+            "name" => $row["name"]
+            "instrument" => $row["instrument"]
+            "duration" => $row["duration"]
+          );
+          return $result 
 		    }
 		} else {
 		    echo "0 results \n";

@@ -41,18 +41,6 @@ $(function() {
   artist = new Artist(10, 10, 24000, {scale: 0.75});
   vextab = new VexTab(artist);
 
-//  function tinySVG(svg) {
-//    var new_innards = svg.html().replace(/width="\d+"/, "width=\"2400\"");
-//    new_innards = new_innards.replace(/height="\d+\.?\d+"/, "height=\"100\"");
-//    svg.empty();
-//    svg.append(new_innards);
-//    svg.css("top","0");
-//    svg.css("width","2400");
-//    svg.css("height","100");
-//    svg.css("margin","0 auto");
-//    $(".preview").append(svg);
-//  }
-
   function startAutoScroll(){
     $(".preview_container").css("display","none");
     autoscroll.isScrolling = true;
@@ -86,9 +74,6 @@ $(function() {
       });
 //      vextab.parse($("#blah").val());
       $("#error").text("");
-//      if ($(".preview").children().length == 0) {
-//        tinySVG($("#boo").clone());
-//      }
       score_scroll = $(".score_container")
     } catch (e) {
       console.log(e);
@@ -96,70 +81,11 @@ $(function() {
     }
   }
 
-  function findStaveN(s, n, cut) {
-     if (n < 1) return;
-     var start =  s.indexOf("stave ") + 6;
-     var sub = s.substring(start);
-     if (n == 1) {
-         return {thenOn: sub, cut: cut+start} ;
-     }
-     return findStaveN(sub, n-1, cut+start); 
-  }
-
-  function replaceNextMuteNoteWithDonor(s, d) {
-      var open_paren = s.indexOf('(');
-      var close_paren = s.indexOf(')');
-      var first_asterisk = s.indexOf('*');
-      if (first_asterisk > open_paren && first_asterisk < close_paren) {
-        while (first_asterisk > open_paren && first_asterisk < close_paren) {
-          s =  s.replace('*',d);
-          first_asterisk = s.indexOf('*');
-          open_paren = s.indexOf('(');
-          close_paren = s.indexOf(')');
-        }
-        return s;
-      } else {
-        return s.replace('*',d);
-      }
-  }
-
-  function validate_name(first_name, last_name){
+  function validate_name(name){
     var regex =  /^([A-ZÀ-Ú][a-zà-ú]*\s?)+$/;
-    if (first_name == "" || last_name == "") throw "Missing field";
-    if (!regex.test(first_name)) throw "Nombres requieren mayusculas. \n"
+    if (name == "") throw "¡Falta un nombre!";
+    if (!regex.test(name)) throw "Nombres requieren mayusculas iniciales. \n"
                                        + "Ejemplo: Primera Segunda Tercera";
-    if (!regex.test(last_name)) throw "Apellios requieren mayusculas. \n" 
-                                      + "Ejemplo: Primera Segunda Tercera"
-//    first_name = first_name.replace(/\s/g, '_');
-//   last_name = last_name.replace(/\s/g, '_');
-//    return '+' + first_name + '_' + last_name + '+';
-  }
-
-  function validate_note(modify, note_duration) {
-    //Find next duration-specifier matching note_duration and the specifier after that
-    //If there's no mute between duration specifiers, find next duration-specifier and repeat
-
-    // Match the note duration
-    var start = modify.thenOn.indexOf(":" + note_duration) + 1;
-    var eol = modify.thenOn.indexOf("stave");
-
-    // Break if there's no more matching note_durations or if we pass the end of the line
-    while (start < eol && start >= 0 ) {
-
-      // Find the next note_duration
-      var next = modify.thenOn.indexOf(":", start);
-      if (next <= 0) {
-        next = modify.thenOn.substring(eol);
-      }
-
-      if (modify.thenOn.substring(start, next).indexOf("*") >= 0) {
-        return;
-//        var result = {cut: modify.cut + start, thenOn: modify.thenOn.substring(start)};
-//        return result;
-      }
-      start = modify.thenOn.indexOf(":" + note_duration, start) + 1;
-    }
-    throw "No more notes of that duration."
   }
 
   Values = {
@@ -206,37 +132,34 @@ $(function() {
   });
   
   $("#paypal_buynow_button").click(function(e) {
-      var first_name = "";
-      var last_name = "";
-      var instrument_number = "0"; 
+      var name = "";
+      var email = "";
+      var instrument = "0"; 
+      var duration = ""; 
 
       if ($("#buy_note input[name='os2']").val() && $("#buy_note input[name='os3']").val()) {
-          first_name = $("#buy_note input[name='os2']").val();
-          last_name = $("#buy_note input[name='os3']").val();
-          instrument_number = $("#buy_note option[name='instrument']:selected").val().toString();
-          note_duration =  $("#buy_note option[name='note_duration']:selected").val().toString();
+          name = $("#buy_note input[name='os2']").val();
+          email = $("#buy_note input[name='os3']").val();
+          instrument = $("#buy_note option[name='instrument']:selected").val().toString();
+          duration =  $("#buy_note option[name='note_duration']:selected").val().toString();
       }
 
-      var modify = findStaveN(text, parseInt(instrument_number), 0);
-//      var donor_name = "";
-
-      // TODO: Selecting a note that's not available shouldn't be possible
       try {
-        validate_name(first_name, last_name);
-        validate_note(modify, note_duration);
+        validate_name(name);
       }
       catch (err) {
           $("#error").html(err.replace(/[\n]/g, '<br/>'));
           console.log("Throwing error: ", err);
           e.preventDefault();
           return;
-       }
+      }
 
-      // var new_content = prev_content.substring(0,modify.cut)
-      //                + replaceNextMuteNoteWithDonor(modify.thenOn,donor_name);
-      // text = new_content;
-      post_data  = {first_name: first_name, last_name: last_name, instrument_number:
-        instrument_number, note_duration: note_duration};
+      post_data  = {
+        name: name, 
+        email: email, 
+        instrument: instrument,
+        duration: duration 
+      };
       $.post("./dbPost.php", post_data).done(render());
   });
 
@@ -282,15 +205,6 @@ $(function() {
     } else {
       var score_scroll = $(".score_container").scrollLeft();
       $(".score_container").scrollLeft(score_scroll - 10 * d);
-
-//      var preview_scroll = $(".preview").scrollLeft();
-//      $(".preview").scrollLeft(preview_scroll - 0.75 * d);
-//
-//      var viewing_left = $(".viewing_box").css("left");
-//      viewing_left = parseInt(viewing_left.substring(0,viewing_left.length - 2)) - 0.7 * d;
-//      if (viewing_left > 0 && viewing_left < 1080) {
-//        $(".viewing_box").css("left", viewing_left + "px");
-//      }
 
       e.preventDefault();
     }

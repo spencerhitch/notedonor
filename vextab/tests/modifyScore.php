@@ -40,16 +40,15 @@ function replaceNextMatchingNote($text, $instr_val, $dur, $donor) {
   return $concatenated;
 }
 
-if( $_POST['first_name'] and $_POST['last_name'] and $_POST['instrument_number'] 
+if( $_POST['name'] and $_POST['instrument_number'] 
   and $_POST['note_duration'] ) {
 
-  $first_name = $_POST['first_name'];
-  $last_name = $_POST['last_name'];
+  $name= $_POST['name'];
   $instrument_number = intval($_POST['instrument_number']);
   $note_duration = $_POST['note_duration'];
   $current_text = file_get_contents('score.txt');
 
-  $donor_name = "+" . $first_name . "_" . $last_name . "+";
+  $donor_name = "+" . $name . "+";
 
   $new_text = replaceNextMatchingNote($current_text, 
                                       $instrument_number, 
