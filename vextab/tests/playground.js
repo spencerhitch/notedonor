@@ -88,6 +88,12 @@ $(function() {
                                        + "Ejemplo: Primera Segunda Tercera";
   }
 
+  function validate_email(email){
+    var regex = /^[-a-zà-ú0-9~!$%^&*_=+}{\'?]+(\.[-a-zà-ú0-9~!$%^&*_=+}{\'?]+)*@([a-zà-ú0-9_][-a-zà-ú0-9_]*(\.[-a-zà-ú0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+    if (email == "") throw "¡Falta un correo electrónico!";
+    if (!regex.test(email)) throw "Por favor ponga un correo electrónico válido.";
+  }
+
   Values = {
     "thirtyseconds": ["32", "Fusa", "$2000", "./note_svgs/32.svg"],
     "dotted_eighths": ["8d", "Corchea con puntillo", "$2000", "./note_svgs/8d.svg"],
@@ -146,6 +152,7 @@ $(function() {
 
       try {
         validate_name(name);
+        validate_email(email);
       }
       catch (err) {
           $("#error").html(err.replace(/[\n]/g, '<br/>'));
