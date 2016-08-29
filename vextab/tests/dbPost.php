@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $sql);
 // Create query, if there is an unverified entry w/ matching email, update it.
 // Else, INSERT new entry
 if ($result->num_rows > 0) {
-  $sql = "UPDATE notes SET name=$name, instrument=$instrument, duration=$duration) 
+  $sql = "UPDATE notes SET name=$name, instrument=$instrument, duration=$duration
     WHERE email=$email 
     AND verified=0";
 

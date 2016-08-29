@@ -19,7 +19,6 @@ $(function() {
     current_scroll: 0,
     scrollInterval: setInterval(function() {
       if (autoscroll.isScrolling){
-        console.log(artist.conductor.done_count);
         if (artist.conductor.done_count == 8) {
           stopAutoScroll();
         }
@@ -160,9 +159,10 @@ $(function() {
           e.preventDefault();
           return;
       }
+      var donor_name = name.replace(/ /g, "_");
 
       post_data  = {
-        name: name, 
+        name: donor_name, 
         email: email, 
         instrument: instrument,
         duration: duration 
