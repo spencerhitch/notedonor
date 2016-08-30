@@ -81,8 +81,11 @@ $(function() {
   }
 
   function validate_name(name){
+    if (name.charAt(name.length - 1) == " ") name = name.substring(0, name.length - 1);
+    console.log("name in validate name: ", name);
     var regex =  /^([A-ZÀ-Ú][a-zà-ú]*\s?)+$/;
     if (name == "") throw "¡Falta un nombre!";
+    if (!name.includes(" ")) throw "Requeremos nombre y apellido";
     if (!regex.test(name)) throw "Nombres requieren mayusculas iniciales. \n"
                                        + "Ejemplo: Primera Segunda Tercera";
   }
@@ -173,21 +176,19 @@ $(function() {
   var busca_counter = 0;
 
   $("#busca_mi_nota").submit(function(e) {
-      var first_name = "";
-      var last_name = "";
-      if ($("#busca_mi_nota input[name='first_name']").val() && $("#busca_mi_nota input[name='last_name']").val()) {
-          first_name = $("#busca_mi_nota input[name='first_name']").val();
-          last_name = $("#busca_mi_nota input[name='last_name']").val();
+      var name = "";
+      if ($("#busca_mi_nota input[name='name']").val()) {
+          name = $("#busca_mi_nota input[name='first_name']").val();
       }
       try {
-        validate_name(first_name, last_name);
+        validate_name(name);
       }
       catch (err) {
           $("#error").html(err.replace(/[\n]/g, '<br/>'));
           e.preventDefault();
           return;
       }
-      var donor_name = first_name + '_' + last_name;
+      var donor_name = name.replace(" ", "_");
       var matching_elems = $("svg").find("svg").find("g#vf-" + donor_name);
       var elem = matching_elems[busca_counter];
       elem = $(elem);
