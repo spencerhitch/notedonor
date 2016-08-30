@@ -81,8 +81,8 @@ $(function() {
   }
 
   function validate_name(name){
-    if (name.charAt(name.length - 1) == " ") name = name.substring(0, name.length - 1);
     console.log("name in validate name: ", name);
+    if (name.charAt(name.length - 1) == " ") name = name.substring(0, name.length - 1);
     var regex =  /^([A-ZÀ-Ú][a-zà-ú]*\s?)+$/;
     if (name == "") throw "¡Falta un nombre!";
     if (!name.includes(" ")) throw "Requeremos nombre y apellido";
@@ -178,7 +178,7 @@ $(function() {
   $("#busca_mi_nota").submit(function(e) {
       var name = "";
       if ($("#busca_mi_nota input[name='name']").val()) {
-          name = $("#busca_mi_nota input[name='first_name']").val();
+          name = $("#busca_mi_nota input[name='name']").val();
       }
       try {
         validate_name(name);
