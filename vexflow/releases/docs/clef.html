@@ -811,32 +811,35 @@ and a default stave line number.</p>
       }
       this.glyph.context.closeGroup();
 
+      var donor_div = $("&lt;div&gt;",{class: name});
       if (name) {
-        var donor_div = $("&lt;div&gt;",{class: name});
         name = name.replace(/_/g, ' ');
         donor_div.append("&lt;h4&gt;" + name + "&lt;/h4&gt;");
-        donor_div.css({
-            "display":"none",
-            "position":"absolute",
-            "width":"120px",
-            "padding":"2px 2px",
-            "top":"170px",
-            "left":"70px",
-            "background":"#eee",
-            "text-align":"center"
-        });
-        $(".score_container").append(donor_div);
-        $(this.elem).mouseover(function(e) {
-          donor_div.show()
-              .css("top", e.pageY - 37)
-              .css("left", e.pageX - 30);
-          $(this).find("path").css({"stroke": "red", "fill": "red"});
-        });
-        $(this.elem).mouseout(function() {
-          donor_div.hide();
-          $(this).find("path").css({"stroke": "black", "fill": "black"});
-        });
+      } else {
+        donor_div.append("&lt;p&gt; Si quisieras comprar una clave. Por favor contáctanos &lt;/p&gt;");
       }
+
+      donor_div.css({
+          "display":"none",
+          "position":"absolute",
+          "width":"120px",
+          "padding":"2px 2px",
+          "top":"170px",
+          "left":"70px",
+          "background":"#eee",
+          "text-align":"center"
+      });
+      $(".score_container").append(donor_div);
+      $(this.elem).mouseover(function(e) {
+        donor_div.show()
+            .css("top", e.pageY - 37)
+            .css("left", e.pageX - 30);
+        $(this).find("path").css({"stroke": "red", "fill": "red"});
+      });
+      $(this.elem).mouseout(function() {
+        donor_div.hide();
+        $(this).find("path").css({"stroke": "black", "fill": "black"});
+      });
     }
   });
 
