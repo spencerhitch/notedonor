@@ -23,6 +23,7 @@ Vex.Flow.Stave = (function() {
       this.modifiers = [];  // stave modifiers (clef, key, time, barlines, coda, segno, etc.)
       this.measure = 0;
       this.clef = "treble";
+      this.donor = "";
       this.font = {
         family: "sans-serif",
         size: 8,
@@ -290,12 +291,17 @@ Vex.Flow.Stave = (function() {
       return this;
     },
 
+    setDonor: function(name) {
+        this.donor = name;
+    },
+
     setClef: function(clefSpec, size, annotation, position) {
       if (position === undefined) {
         position = Vex.Flow.StaveModifier.Position.BEGIN;
       }
 
       this.clef = clefSpec;
+
       var clefs = this.getModifiers(position, Vex.Flow.Clef.category);
       if (clefs.length === 0) {
         this.addClef(clefSpec, size, annotation, position);

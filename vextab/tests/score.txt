@@ -1,8 +1,8 @@
 options player=true 
 stavegroup 
 
-stave instrument=oboe 
-notes :8G*/4 | :8C*/5 :4C*/5 :8G*/4 :8E*/5 :4E*/5 :8G*/4 | 
+stave instrument=oboe donor=Spencer_Hitchcock
+notes :8G+Spencer_Hitchcock+/4 | :8C*/5 :4C*/5 :8G*/4 :8E*/5 :4E*/5 :8G*/4 | 
 notes :8C*/5 :8G*/4 :8E*/4 :8G*/4 :4C*/4 :4## | :w## | 
 notes :w## | :h## :8C*/5 :4C*/5 :8G*/4 | 
 notes :8E*/5 :4E*/5 :8G*/4 :8C*/5 :8E*/5 :8A*/4 :8C*/5 | 

@@ -66,6 +66,8 @@ class VexTab
           throw error("Invalid number of strings: #{num_strings}") if (num_strings < 4 or num_strings > 8)
         when "instrument"
           continue
+        when "donor"
+          continue
         else
           throw error("Invalid option '#{option.key}'")
 

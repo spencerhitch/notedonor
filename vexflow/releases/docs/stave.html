@@ -519,7 +519,7 @@
       
         
         <p>Vex Flow
-Mohit Muthanna <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#109;&#x6f;&#104;&#105;&#x74;&#x40;&#109;&#117;&#x74;&#x68;&#x61;&#x6e;&#110;&#x61;&#x2e;&#99;&#111;&#109;">&#109;&#x6f;&#104;&#105;&#x74;&#x40;&#109;&#117;&#x74;&#x68;&#x61;&#x6e;&#110;&#x61;&#x2e;&#99;&#111;&#109;</a></p>
+Mohit Muthanna <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#109;&#111;&#104;&#x69;&#x74;&#x40;&#x6d;&#117;&#x74;&#x68;&#x61;&#x6e;&#x6e;&#97;&#46;&#99;&#x6f;&#109;">&#109;&#111;&#104;&#x69;&#x74;&#x40;&#x6d;&#117;&#x74;&#x68;&#x61;&#x6e;&#x6e;&#97;&#46;&#99;&#x6f;&#109;</a></p>
 <p>Copyright Mohit Cheppudira 2010</p>
 
         
@@ -544,6 +544,7 @@ Vex.Flow.Stave = (<span class="hljs-function"><span class="hljs-keyword">functio
       <span class="hljs-keyword">this</span>.modifiers = [];  <span class="hljs-comment">// stave modifiers (clef, key, time, barlines, coda, segno, etc.)</span>
       <span class="hljs-keyword">this</span>.measure = <span class="hljs-number">0</span>;
       <span class="hljs-keyword">this</span>.clef = <span class="hljs-string">"treble"</span>;
+      <span class="hljs-keyword">this</span>.donor = <span class="hljs-string">""</span>;
       <span class="hljs-keyword">this</span>.font = {
         family: <span class="hljs-string">"sans-serif"</span>,
         size: <span class="hljs-number">8</span>,
@@ -859,12 +860,17 @@ this.modifiers[1].setX(this.end_x);</p>
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
     },
 
+    setDonor: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+        <span class="hljs-keyword">this</span>.donor = name;
+    },
+
     setClef: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">clefSpec, size, annotation, position</span>) </span>{
       <span class="hljs-keyword">if</span> (position === <span class="hljs-literal">undefined</span>) {
         position = Vex.Flow.StaveModifier.Position.BEGIN;
       }
 
       <span class="hljs-keyword">this</span>.clef = clefSpec;
+
       <span class="hljs-keyword">var</span> clefs = <span class="hljs-keyword">this</span>.getModifiers(position, Vex.Flow.Clef.category);
       <span class="hljs-keyword">if</span> (clefs.length === <span class="hljs-number">0</span>) {
         <span class="hljs-keyword">this</span>.addClef(clefSpec, size, annotation, position);

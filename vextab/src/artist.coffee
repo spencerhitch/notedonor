@@ -1009,6 +1009,7 @@ class Artist
       note_stave.addClef(opts.clef) if opts.clef isnt "none"
       note_stave.addKeySignature(opts.key)
       note_stave.addTimeSignature(opts.time) if opts.time?
+      note_stave.setDonor(opts.donor) if opts.donor?
 
       @last_y += note_stave.getHeight() +
                  @options.note_stave_lower_spacing +

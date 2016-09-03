@@ -142,10 +142,16 @@ Vex.Flow.Clef = (function() {
       this.setPosition(Vex.Flow.StaveModifier.Position.BEGIN);
       this.setType(type, size, annotation);
       this.setWidth(this.glyph.getMetrics().width);
+      this.donor = "";
       L("Creating clef:", type);
     },
 
     getCategory: function() { return Clef.category; },
+
+    //Sets a `Donor Name` for the clef 
+    setDonor: function(name) {
+        this.donor = name;
+    },
 
     setType: function(type, size, annotation) {
       this.type = type;
@@ -228,7 +234,15 @@ Vex.Flow.Clef = (function() {
       if (!this.stave) throw new Vex.RERR("ClefError", "Can't draw clef without stave.");
 
       this.glyph.setStave(this.stave);
+      this.setDonor(this.glyph.stave.donor);
       this.glyph.setContext(this.stave.context);
+
+      var name = this.donor;
+      if (name) {
+        this.elem = this.glyph.context.openGroup("clef", name);
+      } else {
+        this.elem = this.glyph.context.openGroup("clef", this.glyph.stave.clef);
+      }
       if (this.clef.line !== undefined) {
         this.placeGlyphOnLine(this.glyph, this.stave, this.clef.line);
       }
@@ -240,6 +254,34 @@ Vex.Flow.Clef = (function() {
         this.attachment.setStave(this.stave);
         this.attachment.setContext(this.stave.context);
         this.attachment.renderToStave(this.x);
+      }
+      this.glyph.context.closeGroup();
+
+      if (name) {
+        var donor_div = $("<div>",{class: name});
+        name = name.replace(/_/g, ' ');
+        donor_div.append("<h4>" + name + "</h4>");
+        donor_div.css({
+            "display":"none",
+            "position":"absolute",
+            "width":"120px",
+            "padding":"2px 2px",
+            "top":"170px",
+            "left":"70px",
+            "background":"#eee",
+            "text-align":"center"
+        });
+        $(".score_container").append(donor_div);
+        $(this.elem).mouseover(function(e) {
+          donor_div.show()
+              .css("top", e.pageY - 37)
+              .css("left", e.pageX - 30);
+          $(this).find("path").css({"stroke": "red", "fill": "red"});
+        });
+        $(this.elem).mouseout(function() {
+          donor_div.hide();
+          $(this).find("path").css({"stroke": "black", "fill": "black"});
+        });
       }
     }
   });

@@ -688,10 +688,20 @@ and a default stave line number.</p>
       <span class="hljs-keyword">this</span>.setPosition(Vex.Flow.StaveModifier.Position.BEGIN);
       <span class="hljs-keyword">this</span>.setType(type, size, annotation);
       <span class="hljs-keyword">this</span>.setWidth(<span class="hljs-keyword">this</span>.glyph.getMetrics().width);
+      <span class="hljs-keyword">this</span>.donor = <span class="hljs-string">""</span>;
       L(<span class="hljs-string">"Creating clef:"</span>, type);
     },
 
-    getCategory: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> Clef.category; },
+    getCategory: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> Clef.category; },</pre></div>
+        
+      
+        
+        <p>Sets a <code>Donor Name</code> for the clef </p>
+
+        
+          <div class='highlight'><pre>    setDonor: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+        <span class="hljs-keyword">this</span>.donor = name;
+    },
 
     setType: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">type, size, annotation</span>) </span>{
       <span class="hljs-keyword">this</span>.type = type;
@@ -709,92 +719,128 @@ and a default stave line number.</p>
         <p>If an annotation, such as 8va, is specified, add it to the Clef object.</p>
 
         
-          <div class='highlight'><pre>      <span class="hljs-keyword">if</span> (annotation !== <span class="hljs-literal">undefined</span>) {
-        <span class="hljs-keyword">var</span> anno_dict = Vex.Flow.Clef.annotations[annotation];
-        <span class="hljs-keyword">this</span>.annotation = {
+          <div class='highlight'><pre>      if (annotation !== undefined) {
+        var anno_dict = Vex.Flow.Clef.annotations[annotation];
+        this.annotation = {
           code: anno_dict.code,
-          point: anno_dict.sizes[<span class="hljs-keyword">this</span>.size].point,
-          line: anno_dict.sizes[<span class="hljs-keyword">this</span>.size].attachments[<span class="hljs-keyword">this</span>.type].line,
-          x_shift: anno_dict.sizes[<span class="hljs-keyword">this</span>.size].attachments[<span class="hljs-keyword">this</span>.type].x_shift
+          point: anno_dict.sizes[this.size].point,
+          line: anno_dict.sizes[this.size].attachments[this.type].line,
+          x_shift: anno_dict.sizes[this.size].attachments[this.type].x_shift
         };
 
-        <span class="hljs-keyword">this</span>.attachment = <span class="hljs-keyword">new</span> Vex.Flow.Glyph(<span class="hljs-keyword">this</span>.annotation.code, <span class="hljs-keyword">this</span>.annotation.point);
-        <span class="hljs-keyword">this</span>.attachment.metrics.x_max = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">this</span>.attachment.setXShift(<span class="hljs-keyword">this</span>.annotation.x_shift);
+        this.attachment = new Vex.Flow.Glyph(this.annotation.code, this.annotation.point);
+        this.attachment.metrics.x_max = 0;
+        this.attachment.setXShift(this.annotation.x_shift);
       }
-      <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">this</span>.annotation = <span class="hljs-literal">undefined</span>;
+      else {
+        this.annotation = undefined;
       }
 
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+      return this;
     },
 
-    getWidth: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.type === <span class="hljs-string">'tab'</span> &amp;&amp; !<span class="hljs-keyword">this</span>.stave) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Vex.RERR(<span class="hljs-string">"ClefError"</span>, <span class="hljs-string">"Can't get width without stave."</span>);
+    getWidth: function() {
+      if (this.type === 'tab' &amp;&amp; !this.stave) {
+        throw new Vex.RERR("ClefError", "Can't get width without stave.");
       }
 
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.width;
+      return this.width;
     },
 
-    setStave: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">stave</span>) </span>{
-      <span class="hljs-keyword">this</span>.stave = stave;
+    setStave: function(stave) {
+      this.stave = stave;
 
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.type !== <span class="hljs-string">'tab'</span>) <span class="hljs-keyword">return</span>;
+      if (this.type !== 'tab') return;
 
-      <span class="hljs-keyword">var</span> glyphScale;
-      <span class="hljs-keyword">var</span> glyphOffset;
-      <span class="hljs-keyword">switch</span>(<span class="hljs-keyword">this</span>.stave.getOptions().num_lines) {
-        <span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:
-          glyphScale = <span class="hljs-number">55</span>;
-          glyphOffset = <span class="hljs-number">14</span>;
-          <span class="hljs-keyword">break</span>;
-        <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:
-          glyphScale = <span class="hljs-number">47</span>;
-          glyphOffset = <span class="hljs-number">8</span>;
-          <span class="hljs-keyword">break</span>;
-        <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
-          glyphScale = <span class="hljs-number">40</span>;
-          glyphOffset = <span class="hljs-number">1</span>;
-          <span class="hljs-keyword">break</span>;
-        <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
-          glyphScale = <span class="hljs-number">30</span>;
-          glyphOffset = <span class="hljs-number">-6</span>;
-          <span class="hljs-keyword">break</span>;
-        <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
-          glyphScale = <span class="hljs-number">23</span>;
-          glyphOffset = <span class="hljs-number">-12</span>;
-          <span class="hljs-keyword">break</span>;
+      var glyphScale;
+      var glyphOffset;
+      switch(this.stave.getOptions().num_lines) {
+        case 8:
+          glyphScale = 55;
+          glyphOffset = 14;
+          break;
+        case 7:
+          glyphScale = 47;
+          glyphOffset = 8;
+          break;
+        case 6:
+          glyphScale = 40;
+          glyphOffset = 1;
+          break;
+        case 5:
+          glyphScale = 30;
+          glyphOffset = -6;
+          break;
+        case 4:
+          glyphScale = 23;
+          glyphOffset = -12;
+          break;
       }
 
-      <span class="hljs-keyword">this</span>.glyph.setPoint(glyphScale);
-      <span class="hljs-keyword">this</span>.glyph.setYShift(glyphOffset);
+      this.glyph.setPoint(glyphScale);
+      this.glyph.setYShift(glyphOffset);
 
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+      return this;
     },
 
-    draw: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.x) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Vex.RERR(<span class="hljs-string">"ClefError"</span>, <span class="hljs-string">"Can't draw clef without x."</span>);
-      <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.stave) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Vex.RERR(<span class="hljs-string">"ClefError"</span>, <span class="hljs-string">"Can't draw clef without stave."</span>);
+    draw: function() {
+      if (!this.x) throw new Vex.RERR("ClefError", "Can't draw clef without x.");
+      if (!this.stave) throw new Vex.RERR("ClefError", "Can't draw clef without stave.");
 
-      <span class="hljs-keyword">this</span>.glyph.setStave(<span class="hljs-keyword">this</span>.stave);
-      <span class="hljs-keyword">this</span>.glyph.setContext(<span class="hljs-keyword">this</span>.stave.context);
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.clef.line !== <span class="hljs-literal">undefined</span>) {
-        <span class="hljs-keyword">this</span>.placeGlyphOnLine(<span class="hljs-keyword">this</span>.glyph, <span class="hljs-keyword">this</span>.stave, <span class="hljs-keyword">this</span>.clef.line);
+      this.glyph.setStave(this.stave);
+      this.setDonor(this.glyph.stave.donor);
+      this.glyph.setContext(this.stave.context);
+
+      var name = this.donor;
+      if (name) {
+        this.elem = this.glyph.context.openGroup("clef", name);
+      } else {
+        this.elem = this.glyph.context.openGroup("clef", this.glyph.stave.clef);
+      }
+      if (this.clef.line !== undefined) {
+        this.placeGlyphOnLine(this.glyph, this.stave, this.clef.line);
       }
 
-      <span class="hljs-keyword">this</span>.glyph.renderToStave(<span class="hljs-keyword">this</span>.x);
+      this.glyph.renderToStave(this.x);
 
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.annotation !== <span class="hljs-literal">undefined</span>) {
-        <span class="hljs-keyword">this</span>.placeGlyphOnLine(<span class="hljs-keyword">this</span>.attachment, <span class="hljs-keyword">this</span>.stave, <span class="hljs-keyword">this</span>.annotation.line);
-        <span class="hljs-keyword">this</span>.attachment.setStave(<span class="hljs-keyword">this</span>.stave);
-        <span class="hljs-keyword">this</span>.attachment.setContext(<span class="hljs-keyword">this</span>.stave.context);
-        <span class="hljs-keyword">this</span>.attachment.renderToStave(<span class="hljs-keyword">this</span>.x);
+      if (this.annotation !== undefined) {
+        this.placeGlyphOnLine(this.attachment, this.stave, this.annotation.line);
+        this.attachment.setStave(this.stave);
+        this.attachment.setContext(this.stave.context);
+        this.attachment.renderToStave(this.x);
+      }
+      this.glyph.context.closeGroup();
+
+      if (name) {
+        var donor_div = $("&lt;div&gt;",{class: name});
+        name = name.replace(/_/g, ' ');
+        donor_div.append("&lt;h4&gt;" + name + "&lt;/h4&gt;");
+        donor_div.css({
+            "display":"none",
+            "position":"absolute",
+            "width":"120px",
+            "padding":"2px 2px",
+            "top":"170px",
+            "left":"70px",
+            "background":"#eee",
+            "text-align":"center"
+        });
+        $(".score_container").append(donor_div);
+        $(this.elem).mouseover(function(e) {
+          donor_div.show()
+              .css("top", e.pageY - 37)
+              .css("left", e.pageX - 30);
+          $(this).find("path").css({"stroke": "red", "fill": "red"});
+        });
+        $(this.elem).mouseout(function() {
+          donor_div.hide();
+          $(this).find("path").css({"stroke": "black", "fill": "black"});
+        });
       }
     }
   });
 
-  <span class="hljs-keyword">return</span> Clef;
+  return Clef;
 }());</pre></div>
         
       

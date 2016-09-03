@@ -1,5 +1,5 @@
 /**
- * VexFlow 1.2.41 built on 2016-08-03.
+ * VexFlow 1.2.41 built on 2016-09-02.
  * Copyright (c) 2010 Mohit Muthanna Cheppudira <mohit@muthanna.com>
  *
  * http://www.vexflow.com  http://github.com/0xfe/vexflow
@@ -1984,6 +1984,7 @@ Vex.Flow.Stave = (function() {
       this.modifiers = [];  // stave modifiers (clef, key, time, barlines, coda, segno, etc.)
       this.measure = 0;
       this.clef = "treble";
+      this.donor = "";
       this.font = {
         family: "sans-serif",
         size: 8,
@@ -2251,12 +2252,17 @@ Vex.Flow.Stave = (function() {
       return this;
     },
 
+    setDonor: function(name) {
+        this.donor = name;
+    },
+
     setClef: function(clefSpec, size, annotation, position) {
       if (position === undefined) {
         position = Vex.Flow.StaveModifier.Position.BEGIN;
       }
 
       this.clef = clefSpec;
+
       var clefs = this.getModifiers(position, Vex.Flow.Clef.category);
       if (clefs.length === 0) {
         this.addClef(clefSpec, size, annotation, position);
@@ -5172,8 +5178,8 @@ Vex.Flow.StaveNote = (function() {
         $(".score_container").append(donor_div);
         $(this.elem).mouseover(function(e) {
           donor_div.show()
-              .css("top", e.pageY)
-              .css("left", e.pageX);
+              .css("top", e.pageY - 37)
+              .css("left", e.pageX - 30);
           $(this).find("path").css({"stroke": "red", "fill": "red"});
         });
         $(this.elem).mouseout(function() {
@@ -10318,10 +10324,16 @@ Vex.Flow.Clef = (function() {
       this.setPosition(Vex.Flow.StaveModifier.Position.BEGIN);
       this.setType(type, size, annotation);
       this.setWidth(this.glyph.getMetrics().width);
+      this.donor = "";
       L("Creating clef:", type);
     },
 
     getCategory: function() { return Clef.category; },
+
+    //Sets a `Donor Name` for the clef 
+    setDonor: function(name) {
+        this.donor = name;
+    },
 
     setType: function(type, size, annotation) {
       this.type = type;
@@ -10404,7 +10416,15 @@ Vex.Flow.Clef = (function() {
       if (!this.stave) throw new Vex.RERR("ClefError", "Can't draw clef without stave.");
 
       this.glyph.setStave(this.stave);
+      this.setDonor(this.glyph.stave.donor);
       this.glyph.setContext(this.stave.context);
+
+      var name = this.donor;
+      if (name) {
+        this.elem = this.glyph.context.openGroup("clef", name);
+      } else {
+        this.elem = this.glyph.context.openGroup("clef", this.glyph.stave.clef);
+      }
       if (this.clef.line !== undefined) {
         this.placeGlyphOnLine(this.glyph, this.stave, this.clef.line);
       }
@@ -10416,6 +10436,34 @@ Vex.Flow.Clef = (function() {
         this.attachment.setStave(this.stave);
         this.attachment.setContext(this.stave.context);
         this.attachment.renderToStave(this.x);
+      }
+      this.glyph.context.closeGroup();
+
+      if (name) {
+        var donor_div = $("<div>",{class: name});
+        name = name.replace(/_/g, ' ');
+        donor_div.append("<h4>" + name + "</h4>");
+        donor_div.css({
+            "display":"none",
+            "position":"absolute",
+            "width":"120px",
+            "padding":"2px 2px",
+            "top":"170px",
+            "left":"70px",
+            "background":"#eee",
+            "text-align":"center"
+        });
+        $(".score_container").append(donor_div);
+        $(this.elem).mouseover(function(e) {
+          donor_div.show()
+              .css("top", e.pageY - 37)
+              .css("left", e.pageX - 30);
+          $(this).find("path").css({"stroke": "red", "fill": "red"});
+        });
+        $(this.elem).mouseout(function() {
+          donor_div.hide();
+          $(this).find("path").css({"stroke": "black", "fill": "black"});
+        });
       }
     }
   });
