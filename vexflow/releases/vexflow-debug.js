@@ -1,5 +1,5 @@
 /**
- * VexFlow 1.2.41 built on 2016-09-03.
+ * VexFlow 1.2.41 built on 2016-09-04.
  * Copyright (c) 2010 Mohit Muthanna Cheppudira <mohit@muthanna.com>
  *
  * http://www.vexflow.com  http://github.com/0xfe/vexflow
@@ -5178,7 +5178,7 @@ Vex.Flow.StaveNote = (function() {
         $(".score_container").append(donor_div);
         $(this.elem).mouseover(function(e) {
           donor_div.show()
-              .css("top", e.pageY - 37)
+              .css("top", e.pageY - 337)
               .css("left", e.pageX - 30);
           $(this).find("path").css({"stroke": "red", "fill": "red"});
         });
@@ -10444,7 +10444,7 @@ Vex.Flow.Clef = (function() {
         name = name.replace(/_/g, ' ');
         donor_div.append("<h4>" + name + "</h4>");
       } else {
-        donor_div.append("<p> Si quisieras comprar una clave. Por favor contáctanos </p>");
+        donor_div.append("<p> Si quisieras comprar una clave. Por favor contáctenos </p>");
       }
 
       donor_div.css({
@@ -10460,7 +10460,7 @@ Vex.Flow.Clef = (function() {
       $(".score_container").append(donor_div);
       $(this.elem).mouseover(function(e) {
         donor_div.show()
-            .css("top", e.pageY - 37)
+            .css("top", e.pageY - 275)
             .css("left", e.pageX - 30);
         $(this).find("path").css({"stroke": "red", "fill": "red"});
       });

@@ -1023,7 +1023,7 @@ Vex.Flow.StaveNote = (function() {
         $(".score_container").append(donor_div);
         $(this.elem).mouseover(function(e) {
           donor_div.show()
-              .css("top", e.pageY - 37)
+              .css("top", e.pageY - 337)
               .css("left", e.pageX - 30);
           $(this).find("path").css({"stroke": "red", "fill": "red"});
         });

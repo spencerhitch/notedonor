@@ -262,7 +262,7 @@ Vex.Flow.Clef = (function() {
         name = name.replace(/_/g, ' ');
         donor_div.append("<h4>" + name + "</h4>");
       } else {
-        donor_div.append("<p> Si quisieras comprar una clave. Por favor contáctanos </p>");
+        donor_div.append("<p> Si quisieras comprar una clave. Por favor contáctenos </p>");
       }
 
       donor_div.css({
@@ -278,7 +278,7 @@ Vex.Flow.Clef = (function() {
       $(".score_container").append(donor_div);
       $(this.elem).mouseover(function(e) {
         donor_div.show()
-            .css("top", e.pageY - 37)
+            .css("top", e.pageY - 275)
             .css("left", e.pageX - 30);
         $(this).find("path").css({"stroke": "red", "fill": "red"});
       });

@@ -56,7 +56,7 @@ $(function() {
     try {
       vextab.reset();
       artist.reset();
-      $.get("./score.txt", function(data) {
+      $.get("../score.txt", function(data) {
         text = data;
         vextab.parse(data);
         artist.render(renderer);
@@ -81,7 +81,6 @@ $(function() {
   }
 
   function validate_name(name){
-    console.log("name in validate name: ", name);
     if (name.charAt(name.length - 1) == " ") name = name.substring(0, name.length - 1);
     var regex =  /^([A-ZÀ-Ú][a-zà-ú]*\s?)+$/;
     if (name == "") throw "¡Falta un nombre!";
@@ -97,15 +96,15 @@ $(function() {
   }
 
   Values = {
-    "thirtyseconds": ["32", "Fusa", "$2000", "./note_svgs/32.svg"],
-    "dotted_eighths": ["8d", "Corchea con puntillo", "$2000", "./note_svgs/8d.svg"],
-    "dotted_halves": ["hd", "Blanca con puntillo", "$2000", "./note_svgs/hd.svg"],
-    "dotted_quarters": ["4d", "Negra con puntillo", "$1000", "./note_svgs/4d.svg"],
-    "wholes": ["w", "Redonda", "$500", "./note_svgs/w.svg"],
-    "halves": ["h", "Blanca", "$200", "./note_svgs/h.svg"],
-    "quarters": ["4", "Negra", "$100", "./note_svgs/4.svg"],
-    "sixteenths": ["16", "Semicorchea", "$50", "./note_svgs/16.svg"],
-    "eighths": ["8", "Corchea", "$20", "./note_svgs/8.svg"],
+    "thirtyseconds": ["32", "Fusa", "$2000", "../note_svgs/32.svg"],
+    "dotted_eighths": ["8d", "Corchea con puntillo", "$2000", "../note_svgs/8d.svg"],
+    "dotted_halves": ["hd", "Blanca con puntillo", "$2000", "../note_svgs/hd.svg"],
+    "dotted_quarters": ["4d", "Negra con puntillo", "$1000", "../note_svgs/4d.svg"],
+    "wholes": ["w", "Redonda", "$500", "../note_svgs/w.svg"],
+    "halves": ["h", "Blanca", "$200", "../note_svgs/h.svg"],
+    "quarters": ["4", "Negra", "$100", "../note_svgs/4.svg"],
+    "sixteenths": ["16", "Semicorchea", "$50", "../note_svgs/16.svg"],
+    "eighths": ["8", "Corchea", "$20", "../note_svgs/8.svg"],
   }
 
   function renderAvailableNotesInputs() {
@@ -114,7 +113,7 @@ $(function() {
     post_data= {instrument_number: instrument_number};
     $.ajax({
       type: 'POST',
-      url: './getAvailableNotes.php', 
+      url: '../getAvailableNotes.php', 
       dataType: "JSON",
       data: post_data,
       success: function(json) {
@@ -124,9 +123,8 @@ $(function() {
                      var value =  Values[duration][0];
                      var name =  Values[duration][1];
                      var amount = Values[duration][2];
-                     var url = Values[duration][3];
                      var input = "<option name='note_duration' value='"
-                                 + value +  "'> "  + name + " | " + amount + " USD <img class='note_svg' src='" + url + "'></option>";
+                                 + value +  "'> "  + name + " | " + amount + " USD</option>";
                      html = html.concat(input);
                    }
                  }
@@ -137,6 +135,20 @@ $(function() {
 
   $('select[name="os1"]').change(function(e) {
     renderAvailableNotesInputs();
+  });
+
+  $('select[name="os0"]').change(function(e) {
+    var note_type =  $("#buy_note option[name='note_duration']:selected").val();
+    console.log("Getting note_type: ", note_type);
+    var img_url = "";
+    for (var v in Values) {
+      if (Values[v][0] == note_type){
+        img_url = Values[v][3];
+        break;
+      }
+    }
+    var img = "<img id='note_visual' src='" + img_url + "'>"
+    $('#note_visual').replaceWith(img);
   });
   
   $("#paypal_buynow_button").click(function(e) {
@@ -196,7 +208,8 @@ $(function() {
       $(".score_container").scrollLeft(elem.position().left - 600);
 
       elem.find("path").css({"stroke" :"red", "fill":"red"});
-      $(".score_container").find("div." + donor_name).show().css({"top":elem.position().top, "left":elem.position().left});
+      $(".score_container").find("div." + donor_name).show()
+        .css({"top":elem.position().top - 275, "left":elem.position().left});
 
       busca_counter += 1;
       if (busca_counter > matching_elems.length - 1) {
