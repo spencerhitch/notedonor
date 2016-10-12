@@ -5,10 +5,6 @@
  */
 
 function findStaveN($s, $n, $start){
-//  if ($n < 1) {
-//    //TODO, doesn't work for final instrument
-//    return;
-//  }
   $start =  strpos($s, "stave ",$start) + 6;
   $length =  strpos($s, "stave ", $start) - $start;
   if ($n == 1) {
@@ -108,15 +104,15 @@ if( $_POST['instrument_number'] ) {
   $instrument_number = $_POST['instrument_number'];
   $score = file_get_contents('./score.txt');
 
-  //Count the number of available notes of every type exist for the instrument
+  //Count the number of available notes of every type exist for the instrument_number
   $available_notes = findAvailableNotes($score, intval($instrument_number));
 
   //Query SQL for queued purchases
-//  include '../dbGet.php';
-//  $unverified_notes = queryUnverified($instrument_number);
+  include './dbGet.php';
+  $unverified_notes = queryUnverified($instrument_number);
 
   //Subtract purchases from each category. If # == 0 don't display.
-//  $available_notes = subtractUnverified($available_notes, $unverified_notes);
+  $available_notes = subtractUnverified($available_notes, $unverified_notes);
 
   echo json_encode($available_notes);
 

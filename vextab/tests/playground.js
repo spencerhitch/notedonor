@@ -31,9 +31,6 @@ $(function() {
     } , 124)}
 
   // Create VexFlow Renderer from canvas element with id #boo
-//  renderer = new Renderer($('#boo')[0], Renderer.Backends.CANVAS);
-  
-  // Create VexFlow Renderer from canvas element with id #boo
   renderer = new Renderer($('#boo')[0], Renderer.Backends.SVG);
 
   // Initialize VexTab artist and parser.
@@ -56,7 +53,8 @@ $(function() {
     try {
       vextab.reset();
       artist.reset();
-      $.get("../score.txt", function(data) {
+//      $.get("../score.txt", function(data) {
+      $.get("./score.txt", function(data) {
         text = data;
         vextab.parse(data);
         artist.render(renderer);
@@ -113,7 +111,8 @@ $(function() {
     post_data= {instrument_number: instrument_number};
     $.ajax({
       type: 'POST',
-      url: '../getAvailableNotes.php', 
+      url: './getAvailableNotes.php', 
+//      url: '../getAvailableNotes.php', 
       dataType: "JSON",
       data: post_data,
       success: function(json) {
@@ -132,14 +131,8 @@ $(function() {
                }
     });
   }
-
-  $('select[name="os1"]').change(function(e) {
-    renderAvailableNotesInputs();
-  });
-
-  $('select[name="os0"]').change(function(e) {
+  function renderImgVisual(){
     var note_type =  $("#buy_note option[name='note_duration']:selected").val();
-    console.log("Getting note_type: ", note_type);
     var img_url = "";
     for (var v in Values) {
       if (Values[v][0] == note_type){
@@ -149,6 +142,15 @@ $(function() {
     }
     var img = "<img id='note_visual' src='" + img_url + "'>"
     $('#note_visual').replaceWith(img);
+  }
+
+  $('select[name="os1"]').change(function(e) {
+    renderAvailableNotesInputs();
+    renderImgVisual();
+  });
+
+  $('select[name="os0"]').change(function(e) {
+    renderImgVisual();
   });
   
   $("#paypal_buynow_button").click(function(e) {
@@ -182,12 +184,13 @@ $(function() {
         instrument: instrument,
         duration: duration 
       };
-      $.post("./dbPost.php", post_data).done(render());
+      $.post("../dbPost.php", post_data).done(render());
   });
 
   var busca_counter = 0;
 
   $("#busca_mi_nota").submit(function(e) {
+      e.preventDefault();
       var name = "";
       if ($("#busca_mi_nota input[name='name']").val()) {
           name = $("#busca_mi_nota input[name='name']").val();
@@ -197,11 +200,14 @@ $(function() {
       }
       catch (err) {
           $("#error").html(err.replace(/[\n]/g, '<br/>'));
-          e.preventDefault();
           return;
       }
-      var donor_name = name.replace(" ", "_");
-      var matching_elems = $("svg").find("svg").find("g#vf-" + donor_name);
+      var donor_name = name.replace(/ /g, "_");
+      try{
+        var matching_elems = $("svg").find("svg").find("g#vf-" + donor_name);
+      } catch (err) {
+        return;
+      }
       var elem = matching_elems[busca_counter];
       elem = $(elem);
 
@@ -209,14 +215,13 @@ $(function() {
 
       elem.find("path").css({"stroke" :"red", "fill":"red"});
       $(".score_container").find("div." + donor_name).show()
-        .css({"top":elem.position().top - 275, "left":elem.position().left});
+        .css({"top":elem.position().top - 555, "left":elem.position().left});
 
       busca_counter += 1;
       if (busca_counter > matching_elems.length - 1) {
         busca_counter = 0;
       }
 
-      e.preventDefault();
   });
 
   $(".score_view").mousewheel(function (e,d) {
@@ -234,4 +239,5 @@ $(function() {
   $("#blah").keyup(_.throttle(render, 250));
   render();
   renderAvailableNotesInputs();
+  renderImgVisual();
 });
