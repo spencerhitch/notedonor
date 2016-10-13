@@ -22,12 +22,18 @@ npm start
 Move to Vextab, install the necessary node package dependencies, make sure vextab is looking to the Vexflow we linked above, build the project (specifically playground.js), and start a local php server on port 8000.
 ```
 cd ../vextab
+cp tests/score_orig.txt tests/score.txt
 npm install
 npm link vexflow
 npm start; grunt playground
 php -S localhost:8000
 ```
 In your browser of choice go to `localhost:8000/tests/playground.html`
+
+### Troubleshooting
+
+* Careful of unicode characters in `notedonor/vextab/tests/score.txt`
+** Consider replacing "[A-Z][a-z]+_)+[A-Z][a-z]" with "[A-Z][a-z]+_)+[A-Z][a-z]" in `notedonor/vextab/src/vextab.jison`
 
 ## Technologies
 Notedonor is built using [npm](https://www.npmjs.com/) and the existing npm packages [Vextab](https://github.com/0xfe/vextab) and [Vexflow](https://github.com/0xfe/vextab). Player functionality is provided through [MIDI.js](https://github.com/mudcube/MIDI.js/) and [soundfonts](https://github.com/gleitz/midi-js-soundfonts) from github user gleitz.
